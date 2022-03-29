@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/nfrandriamihanta/m1p9mean-fanilo#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "mongodb": "^4.4.1"
   }
 }
