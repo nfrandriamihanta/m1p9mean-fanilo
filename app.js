@@ -22,17 +22,17 @@ router.get("/", function (req, res) {
     res.send("<h1>Server is working well!</h1>")
 })
 
-router.post("/connexion", function (req, res) {
+router.post("/connexion", async function (req, res) {
     let result = {}
     try {
-        result = user.signIn(req.body)
+        result = await user.signIn(req.body)
         console.log(result)
         if (result) res.status(200).json({
             "message": "Authentification réussie",
             "status": 200,
             "res": result
         })
-        else result.status(400).json({
+        else res.status(400).json({
             "message": "Authentification échouée",
             "status": 400,
         })
@@ -40,6 +40,29 @@ router.post("/connexion", function (req, res) {
         console.error(e)
         res.status(400).json({
             "message": "Authentification échouée",
+            "status": 400
+        })
+    }
+})
+
+router.post("/inscription", async function (req, res) {
+    let result = {}
+    try {
+        result = await user.signUp(req.body)
+        console.log(result)
+        if (result) res.status(200).json({
+            "message": "Inscription réussie",
+            "status": 200,
+            "res": result
+        })
+        else res.status(400).json({
+            "message": "Inscription échouée",
+            "status": 400,
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": "Inscription échouée",
             "status": 400
         })
     }
