@@ -44,7 +44,7 @@ router.post("/connexion", async function (req, res) {
             "status": 200,
             "res": result
         })
-        else res.status(400).json({
+        else res.status(200).json({
             "message": "Authentification échouée",
             "status": 400,
         })
