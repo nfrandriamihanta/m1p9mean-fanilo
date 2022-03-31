@@ -22,6 +22,13 @@ app.use(cors({
     origin: ['http://localhost:4200', 'https://m1p9mean-fanilo.herokuapp.com/']
 }));
 
+app.all('/*', function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
+
 // define the first route
 router.get("/", function (req, res) {
     res.send("<h1>Server is working well!</h1>")
