@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/service/data-service.service';
 
@@ -11,8 +11,8 @@ import { DataServiceService } from 'src/app/service/data-service.service';
 export class SignInComponent implements OnInit {
 
   signInForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
   message = ""
 

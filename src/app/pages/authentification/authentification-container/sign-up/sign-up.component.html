@@ -1,3 +1,6 @@
+<p *ngIf="message" style="color: red;">
+    {{ message }}
+</p>
 <form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
     <div class="mb-3">
         <label for="username" class="form-label">Identifiant</label>
