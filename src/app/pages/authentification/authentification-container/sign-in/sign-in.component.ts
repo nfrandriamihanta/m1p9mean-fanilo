@@ -36,6 +36,7 @@ export class SignInComponent implements OnInit {
       }
     },
       err => {
+        console.log(err)
         this.message = "Un problème de serveur est survenu lors de l'opération"
         this.router.navigate([''])
       }
