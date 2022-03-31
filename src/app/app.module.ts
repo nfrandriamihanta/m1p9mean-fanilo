@@ -7,12 +7,14 @@ import { AuthentificationContainerComponent } from './pages/authentification/aut
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignInComponent } from './pages/authentification/authentification-container/sign-in/sign-in.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignUpComponent } from './pages/authentification/authentification-container/sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthentificationContainerComponent,
-    SignInComponent
+    SignInComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

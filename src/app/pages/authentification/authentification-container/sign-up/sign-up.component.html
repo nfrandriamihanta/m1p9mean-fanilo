@@ -1,0 +1,15 @@
+<form [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
+    <div class="mb-3">
+        <label for="username" class="form-label">Identifiant</label>
+        <input type="text" class="form-control" id="username" formControlName="username">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Se connecter</button>
+</form>

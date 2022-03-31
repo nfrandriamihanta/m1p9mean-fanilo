@@ -4,14 +4,15 @@ import { Router } from '@angular/router';
 import { DataServiceService } from 'src/app/service/data-service.service';
 
 @Component({
-  selector: 'app-sign-in',
-  templateUrl: './sign-in.component.html',
-  styleUrls: ['./sign-in.component.css']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.css']
 })
-export class SignInComponent implements OnInit {
+export class SignUpComponent implements OnInit {
 
-  signInForm = new FormGroup({
+  signUpForm = new FormGroup({
     username: new FormControl(''),
+    email: new FormControl(''),
     password: new FormControl(''),
   });
   message = ""
@@ -24,26 +25,24 @@ export class SignInComponent implements OnInit {
     // this.signInForm = this.fb.group()
   }
 
-  onSignIn() {
-    const user = { "username": this.signInForm.value.username, "password": this.signInForm.value.password }
-    this.ds.postData('connexion', user).subscribe(res => {
+  onSignUp() {
+    const newUser = { "username": this.signUpForm.value.username, "email": this.signUpForm.value.email, "password": this.signUpForm.value.password, "role": "client" }
+    this.ds.postData('inscription', newUser).subscribe(res => {
       if (res.status === 200) {
-        localStorage.setItem('user', res.res)
-        this.message = res.message
         this.router.navigate([''])
       } else if (res.status === 400) {
         this.message = res.message
-        this.router.navigate([''])
+        this.router.navigate(['inscription'])
       }
     },
       err => {
         console.log(err)
         this.message = "Un problème de serveur est survenu lors de l'opération"
-        this.router.navigate([''])
+        this.router.navigate(['inscription'])
       }
 
     )
-    console.log(this.signInForm.value.username)
+    console.log(this.signUpForm.value.username)
     console.log('mandeha')
   }
 
