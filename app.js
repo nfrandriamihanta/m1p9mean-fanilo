@@ -17,6 +17,11 @@ app.use(express.static("public"))
 // add router in the Express app.
 app.use("/", router);
 
+const cors = require('cors');
+app.use(cors({
+    origin: ['http://localhost:4200', 'https://m1p9mean-fanilo.herokuapp.com/']
+}));
+
 // define the first route
 router.get("/", function (req, res) {
     res.send("<h1>Server is working well!</h1>")
