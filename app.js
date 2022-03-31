@@ -67,7 +67,7 @@ router.post("/inscription", async function (req, res) {
             "status": 200,
             "res": result
         })
-        else res.status(400).json({
+        else res.status(200).json({
             "message": "Inscription échouée",
             "status": 400,
         })
