@@ -1,0 +1,21 @@
+.col-md-5 {
+    height: 1000px;
+}
+.col-md-7 {
+    background-image: url("../../../../assets/background2.jpg");
+    /* background-attachment: fixed; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 1000px;
+}
+.card {
+    margin-top: 300px;
+    margin-left: 250px;
+    opacity: 1;
+}
+.list-group-item {
+    color: white;
+    border: none;
+    background-color: unset;
+    font-size: large;
+}
