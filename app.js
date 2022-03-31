@@ -5,8 +5,12 @@ const router = express.Router();
 const app = express()
 
 const user = require("./user/user")
+const cors = require('cors');
 
 
+app.use(cors({
+    origin: '*'
+}));
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,16 +21,12 @@ app.use(express.static("public"))
 // add router in the Express app.
 app.use("/", router);
 
-const cors = require('cors');
-app.use(cors({
-    origin: ['http://localhost:4200', 'https://m1p9mean-fanilo.herokuapp.com/']
-}));
 
-app.all('/*', function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
+// app.all('/*', function (req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     next();
+// });
 
 
 // define the first route
