@@ -5,7 +5,7 @@ import { retry } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 
 
-const ws_URL = environment.api_url;
+const ws_URL = 'https://m1p9mean-fanilo-back.herokuapp.com/';
 
 const httpOptions = {
   headers: new HttpHeaders({
