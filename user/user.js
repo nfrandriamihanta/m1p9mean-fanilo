@@ -52,5 +52,21 @@ exports.signUp = async function signUp(user) {
     return result
 }
 
+exports.findAllResto = async function findAllResto() {
+    const client = connect.getClient()
+    let result = null
+    let filter = { "role": "restaurateur" }
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('UserManager').find(filter).toArray()
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+    return result
+}
+
+
 
 
