@@ -30,7 +30,8 @@ export class SignInComponent implements OnInit {
       if (res.status === 200) {
         localStorage.setItem('user', res.res)
         this.message = res.message
-        this.router.navigate([''])
+        if (res.res.role === "client")
+          this.router.navigate(['accueil'])
       } else if (res.status === 400) {
         this.message = res.message
         this.router.navigate([''])

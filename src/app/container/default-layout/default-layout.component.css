@@ -1,0 +1,15 @@
+.list-group-item {
+    border: none;
+    font-size: large;
+}
+
+#menu {
+    float: right;
+    margin-right: 200px;
+}
+
+#footer {
+    margin-top: 100px;
+    text-align: center;
+    font-size: medium;
+}
