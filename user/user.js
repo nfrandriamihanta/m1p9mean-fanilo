@@ -67,6 +67,23 @@ exports.findAllResto = async function findAllResto() {
     return result
 }
 
+exports.search = async function search(filter) {
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('UserManager').find(filter).toArray()
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+    return result
+}
+
+// search({ "role": "restaurateur", "restaurant.nom": { '$regex': "^venus$", "$options": "i" } })
+
 
 
 
