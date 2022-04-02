@@ -1,0 +1,30 @@
+#searchBar {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)), url("../../../../assets/background-accueil-2.jpg");
+    /* background-image: url("../../../../assets/background-accueil-2.jpg"); */
+    /* background-attachment: fixed; */
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 500px;
+    position: relative;
+}
+
+#content {
+    text-align: center;
+    padding-top: 100px;
+}
+
+.list-group-item {
+    border: none;
+    background-color: transparent;
+}
+
+.card {
+    margin-bottom: 20px;
+    /* border: solid;
+    border-color: #02156e; */
+}
+
+.card:hover {
+    background-color: #cfcbc2;
+}

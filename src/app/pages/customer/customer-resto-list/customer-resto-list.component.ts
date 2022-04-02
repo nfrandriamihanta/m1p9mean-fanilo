@@ -28,7 +28,6 @@ export class CustomerRestoListComponent implements OnInit {
       this.restoList = res.res
       // console.log(this.restoList[0].restaurant.nom)
     })
-    if (this.searchSignal) console.log("misy signal o")
   }
 
   load(obs: Observable<any>) {
