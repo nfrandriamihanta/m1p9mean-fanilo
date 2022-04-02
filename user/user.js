@@ -67,6 +67,22 @@ exports.findAllResto = async function findAllResto() {
     return result
 }
 
+exports.findRestoByName = async function findRestoByName(name) {
+    const client = connect.getClient()
+    let result = null
+    let filter = { "restaurant.nom": name }
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('UserManager').findOne(filter)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+    return result
+}
+
+
 exports.search = async function search(filter) {
     const client = connect.getClient()
     let result = null
