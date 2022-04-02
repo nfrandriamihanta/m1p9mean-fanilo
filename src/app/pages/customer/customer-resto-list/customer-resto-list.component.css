@@ -18,3 +18,13 @@
     border: none;
     background-color: transparent;
 }
+
+.card {
+    margin-bottom: 20px;
+    border: solid;
+    border-color: #02156e;
+}
+
+.card:hover {
+    background-color: #cfcbc2;
+}

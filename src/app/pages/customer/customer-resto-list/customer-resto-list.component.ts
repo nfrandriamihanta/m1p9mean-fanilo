@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DataServiceService } from 'src/app/service/data-service.service';
 
@@ -17,10 +18,12 @@ export class CustomerRestoListComponent implements OnInit {
   searchForm = new FormGroup({
     restaurant: new FormControl('', Validators.required)
   });
+  notFound = false
 
-  constructor(private ds: DataServiceService) { }
+  constructor(private ds: DataServiceService, private route: Router) { }
 
   ngOnInit(): void {
+    // if (!localStorage.getItem('user')) this.route.navigate([''])
     this.load(this.ds.getData('listeResto')).then(res => {
       this.restoList = res.res
       // console.log(this.restoList[0].restaurant.nom)
@@ -38,20 +41,18 @@ export class CustomerRestoListComponent implements OnInit {
   }
 
   onSearch() {
-    console.log("mandeha ty")
     this.searchResult = []
     this.searchSignal = true
-    let restoName = "^" + this.searchForm.value.restaurant + "$"
-    let filter = { "role": "restaurateur", "restaurant.nom": { "$regex": restoName, "$options": "i" } }
+    this.notFound = false
+    let filter = { "role": "restaurateur", "restaurant.nom": { "$regex": this.searchForm.value.restaurant, "$options": "i" } }
     this.ds.postData('recherche', filter).subscribe(res => {
-      if (res) {
-        this.searchResult = res
-        console.log(this.searchResult)
-      }
+      this.searchResult = res.res
+      console.log(this.searchResult)
+      if (this.searchResult.length === 0) this.notFound = true
+
     }, err => {
 
     })
-    this.searchSignal = false
   }
 
 }

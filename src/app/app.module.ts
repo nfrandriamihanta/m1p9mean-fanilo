@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SignUpComponent } from './pages/authentification/authentification-container/sign-up/sign-up.component';
 import { DefaultLayoutComponent } from './container/default-layout/default-layout.component';
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
+import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CustomerRestoListComponent } from './pages/customer/customer-resto-list
     SignInComponent,
     SignUpComponent,
     DefaultLayoutComponent,
-    CustomerRestoListComponent
+    CustomerRestoListComponent,
+    CustomerFoodListComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import { DefaultLayoutComponent } from './container/default-layout/default-layou
 import { AuthentificationContainerComponent } from './pages/authentification/authentification-container/authentification-container.component';
 import { SignInComponent } from './pages/authentification/authentification-container/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/authentification/authentification-container/sign-up/sign-up.component';
+import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
 
 const routes: Routes = [
@@ -26,12 +27,16 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'accueil',
+    path: 'client',
     component: DefaultLayoutComponent,
     children: [
       {
         path: '',
         component: CustomerRestoListComponent
+      },
+      {
+        path: 'menu/:restaurant',
+        component: CustomerFoodListComponent
       }
     ]
   }
