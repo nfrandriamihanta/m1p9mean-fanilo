@@ -11,6 +11,7 @@ import { SignUpComponent } from './pages/authentification/authentification-conta
 import { DefaultLayoutComponent } from './container/default-layout/default-layout.component';
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
 import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
+import { CustomerOrderListComponent } from './pages/customer/customer-order-list/customer-order-list.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CustomerFoodListComponent } from './pages/customer/customer-food-list/c
     SignUpComponent,
     DefaultLayoutComponent,
     CustomerRestoListComponent,
-    CustomerFoodListComponent
+    CustomerFoodListComponent,
+    CustomerOrderListComponent
   ],
   imports: [
     BrowserModule,

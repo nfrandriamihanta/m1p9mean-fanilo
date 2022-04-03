@@ -1,3 +1,26 @@
+<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Lieu de livraison</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="orderForm" (ngSubmit)="onOrder()">
+                <div class="modal-body">
+                    <input type="text" class="form-control" formControlName="place">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Envoyer</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
 <div *ngIf="restaurant">
     <div class="container-fluid" style="margin-top: 50px;">
         <h1 style="text-align: center; font-size: 50px;"> {{restaurant.restaurant.nom}}</h1>
@@ -41,9 +64,12 @@
                         <button class="btn btn-primary" style="margin-left: 46%;" (click)="emptyCart()">Vider</button>
                         <br>
                         Prix total : {{totalPrice}}Ar
+                        <!-- <br>
+                        Benefice total : {{totalGain}}Ar -->
                     </div>
                 </div>
-                <button class=" btn btn-primary" style="margin-left: 46%;">Commander</button>
+                <button class=" btn btn-primary" style="margin-left: 46%;" data-bs-toggle="modal"
+                    data-bs-target="#orderModal">Commander</button>
             </div>
         </div>
 

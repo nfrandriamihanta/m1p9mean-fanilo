@@ -28,7 +28,9 @@ export class SignInComponent implements OnInit {
     const user = { "username": this.signInForm.value.username, "password": this.signInForm.value.password }
     this.ds.postData('connexion', user).subscribe(res => {
       if (res.status === 200) {
-        localStorage.setItem('user', res.res)
+        localStorage.setItem('token', res.res.token)
+        localStorage.setItem('username', res.res.username)
+        localStorage.setItem('email', res.res.email)
         this.message = res.message
         if (res.res.role === "client")
           this.router.navigate(['client'])
