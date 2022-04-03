@@ -118,6 +118,7 @@ exports.orderFood = async function orderFood(order) {
     } finally {
         client.close()
     }
+    return result
 }
 
 exports.findOrder = async function findOrder(user) {
@@ -132,6 +133,7 @@ exports.findOrder = async function findOrder(user) {
     } finally {
         client.close()
     }
+    return result
 }
 
 
