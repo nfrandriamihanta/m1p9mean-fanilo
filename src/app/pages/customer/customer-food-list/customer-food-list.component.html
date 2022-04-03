@@ -1,6 +1,6 @@
 <div *ngIf="restaurant">
     <div class="container-fluid" style="margin-top: 50px;">
-        <h1 style="text-align: center; font-size: 50px;"> Venus</h1>
+        <h1 style="text-align: center; font-size: 50px;"> {{restaurant.restaurant.nom}}</h1>
         <div class="row">
             <div class="col-md-6">
                 <h2 style="text-align: center;">Menu </h2>
@@ -18,8 +18,32 @@
                     <div *ngIf="panier.length === 0" style="margin-left: 100px;">
                         <img src="../../../../assets/80582-empty-cart.gif" width="300" alt="" style="margin-left: 25%">
                     </div>
+                    <div *ngIf="panier.length !== 0">
+                        <table class="table">
+                            <tr>
+                                <th class="scope">Plat</th>
+                                <th class="scope">Quantité</th>
+                                <th></th>
+                                <th class="scope">Prix</th>
+                            </tr>
+                            <tr *ngFor="let pan of panier; let index = index">
+                                <td>{{pan.nom}}</td>
+                                <td>{{pan.quantite}} </td>
+                                <td><i (click)="addQuantity(index)" class="fa fa-solid fa-plus"></i>
+                                    <i (click)="substractQuantity(index)" class="fa fa-solid fa-minus"></i>
+                                </td>
+                                <td>{{pan.prix * pan.quantite}}Ar</td>
+                                <td style="font-size: 25px;"><i style="color:red;" class="fa fa-solid fa-trash"
+                                        (click)="cart_remove(index)"></i>
+                                </td>
+                            </tr>
+                        </table>
+                        <button class="btn btn-primary" style="margin-left: 46%;" (click)="emptyCart()">Vider</button>
+                        <br>
+                        Prix total : {{totalPrice}}Ar
+                    </div>
                 </div>
-                <button class="btn btn-primary" style="margin-left: 46%;">Commander</button>
+                <button class=" btn btn-primary" style="margin-left: 46%;">Commander</button>
             </div>
         </div>
 

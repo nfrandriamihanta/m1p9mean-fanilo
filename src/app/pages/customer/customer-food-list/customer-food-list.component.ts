@@ -14,6 +14,7 @@ export class CustomerFoodListComponent implements OnInit {
   resto = ""
   restaurant: any = null
   panier: any[] = []
+  totalPrice = 0
 
   constructor(private route: ActivatedRoute, private ds: DataServiceService) { }
 
@@ -33,9 +34,55 @@ export class CustomerFoodListComponent implements OnInit {
     })
   }
 
+  addPrice(price: number, quantite: number) {
+    this.totalPrice += price * quantite
+  }
+
+  substractPrice(price: number, quantite: number) {
+    this.totalPrice -= price * quantite
+  }
+
+  cart_remove(id: number) {
+    if (confirm("Voulez vous vraiment supprimer cet élément du panier?")) {
+      let newPanier = []
+      for (let u = 0; u < id; u++) {
+        newPanier[u] = this.panier[u]
+      }
+      this.substractPrice(this.panier[id].prix, this.panier[id].quantite)
+      for (let i = id; i < this.panier.length - 1; i++) {
+        newPanier[i] = this.panier[i + 1]
+      }
+      this.panier = newPanier
+      console.log(newPanier)
+      // console.log(this.panier)
+    }
+  }
+
+  addQuantity(id: number) {
+    this.panier[id].quantite += 1
+    this.addPrice(this.panier[id].prix, 1)
+  }
+
+  substractQuantity(id: number) {
+    if (this.panier[id].quantite > 1) {
+      this.panier[id].quantite -= 1
+      this.substractPrice(this.panier[id].prix, 1)
+    }
+    if (this.panier[id].quantite === 1) {
+      if (confirm("Voulez vous supprimer cet élément du panier?"))
+        this.cart_remove(id)
+    }
+  }
+
   onAddCart(food: any) {
     Object.assign(food, { "quantite": 1 })
     this.panier.push(food)
+    this.addPrice(food.prix, food.quantite)
     console.log(this.panier)
+  }
+
+  emptyCart() {
+    this.panier = []
+    this.totalPrice = 0
   }
 }
