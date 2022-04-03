@@ -133,6 +133,44 @@ router.get("/resto/:resto", async function (req, res) {
         })
     }
 })
+
+router.post("/commander", async function (req, res) {
+    let result = {}
+    try {
+        result = await user.orderFood(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/commande", async function (req, res) {
+    let result = {}
+    try {
+        result = await user.findOrder(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+
 // start the server listening for requests
 app.listen(process.env.PORT || 3000,
     () => console.log("Server is running..."));

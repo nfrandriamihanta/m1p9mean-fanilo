@@ -98,7 +98,44 @@ exports.search = async function search(filter) {
     return result
 }
 
-// search({ "role": "restaurateur", "restaurant.nom": { '$regex': "^venus$", "$options": "i" } })
+exports.orderFood = async function orderFood(order) {
+
+    date = new Date()
+    date.setHours(date.getHours() + 3)
+    date = date.toISOString().
+        replace(/T/, ' ').      // replace T with a space
+        replace(/\..+/, '')     // delete the dot and everything after
+    console.log(date)
+    Object.assign(order, { "dateCommande": date, "etat": "en attente" })
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('Order').insertOne(order)
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+}
+
+exports.findOrder = async function findOrder(user) {
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('Order').find(user).toArray()
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+}
+
+
+
 
 
 
