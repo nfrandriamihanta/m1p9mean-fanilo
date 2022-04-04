@@ -104,21 +104,25 @@ export class CustomerFoodListComponent implements OnInit {
   }
 
   onOrder() {
-    let cust = {
-      "username": localStorage.getItem("username"),
-      "email": localStorage.getItem("email")
+    if (this.panier.length !== 0) {
+      let cust = {
+        "username": localStorage.getItem("username"),
+        "email": localStorage.getItem("email")
+      }
+      let order = {
+        "client": cust,
+        "plat": this.panier,
+        "restaurant": this.restaurant.restaurant.nom,
+        "lieuLivraison": this.orderForm.value.place,
+        "prixTotal": this.totalPrice,
+        "beneficeTotal": this.totalGain
+      }
+      console.log(order)
+      this.ds.postData('commander', order).subscribe(res => {
+        if (res.status === 200) this.route.navigate(['client/mes-commandes'])
+      })
+    } else {
+      alert('Veuillez remplir votre panier')
     }
-    let order = {
-      "client": cust,
-      "plat": this.panier,
-      "restaurant": this.restaurant.restaurant.nom,
-      "lieuLivraison": this.orderForm.value.place,
-      "prixTotal": this.totalPrice,
-      "beneficeTotal": this.totalGain
-    }
-    console.log(order)
-    this.ds.postData('commander', order).subscribe(res => {
-      if (res.status === 200) this.route.navigate(['client/mes-commandes'])
-    })
   }
 }
