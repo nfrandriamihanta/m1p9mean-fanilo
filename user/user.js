@@ -119,7 +119,7 @@ exports.orderFood = async function orderFood(order) {
         result = await client.db(connect.dbName).collection('Order').insertOne(order)
         mailer.sendMail(order.client.email, {
             "subject": "Commande envoyée",
-            "text": "Bonjour " + order.client.username + ", votre commande chez " + order.restaurant + " a été bien envoyé, elle est en attente de traitement"
+            "text": "Bonjour " + order.client.username + ", ta commande chez " + order.restaurant + " a été bien envoyée, elle est en attente de traitement"
         })
         console.log(result)
     } catch (e) {
