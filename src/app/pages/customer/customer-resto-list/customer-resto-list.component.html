@@ -2,14 +2,16 @@
     <div id="searchBar">
         <div id="content">
             <h2 style="color: white; ">Retrouvez le meilleur des restaurants de Madagascar</h2>
-            <form class="form" style="margin-top: 50px;" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+            <form class="form" style="margin-top: 3%; margin-left: 31%;" [formGroup]="searchForm"
+                (ngSubmit)="onSearch()">
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item"><input type="text" class="form-control"
-                            style="width: 500px; height: 45px; margin-left: 570px;font-family:Arial, FontAwesome"
+                            style="width: 230%; height: 45px; font-family:Arial, FontAwesome"
                             placeholder="&#xF002; Restaurant" formControlName="restaurant"></li>
-                    <li class="list-group-item"><button class="btn btn-primary"
-                            style="width: 200px;height: 45px;">Rechercher</button>
-                    </li>
+                    <li class="list-group-item" style="margin-left: 20%;"><button class="btn btn-primary"
+                            style="height: 45px; width: 150%;">
+                            Rechercher
+                        </button>
                 </ul>
             </form>
         </div>
@@ -35,14 +37,14 @@
             </div>
         </div>
     </div>
-    <div *ngIf="searchSignal && searchResult.length === 0 && !notFound" style="margin-left: 600px">
+    <div *ngIf="searchSignal && searchResult.length === 0 && !notFound" style="margin-left: 30%">
         <img src="../../../../assets/99946-searching.gif" alt="">
     </div>
-    <div *ngIf="notFound" style="margin-left: 600px">
+    <div *ngIf="notFound" style="margin-left: 30%">
         <img src="../../../../assets/96987-magnifying-glass-404.gif" alt="">
     </div>
 
 </div>
-<div *ngIf="restoList.length === 0" style="margin-left: 600px">
+<div *ngIf="restoList.length === 0" style="margin-left: 30%">
     <img src="../../../../assets/92163-food-courier.gif" alt="">
 </div>

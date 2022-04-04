@@ -10,6 +10,12 @@
     height: 1000px;
 }
 
+#logo {
+    margin-top: 200px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
 .card {
     margin-top: 30%;
     margin-left: 22%;
@@ -22,3 +28,13 @@
     background-color: unset;
     font-size: large;
 }
+
+/* @media screen and (max-width: 1300px) {
+    #logo {
+        color: red;
+    }
+
+    img {
+        width: 70%;
+    }
+} */
