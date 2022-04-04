@@ -21,6 +21,7 @@ export class SignInComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (localStorage.getItem("token")) this.router.navigate(['client'])
     // this.signInForm = this.fb.group()
   }
 

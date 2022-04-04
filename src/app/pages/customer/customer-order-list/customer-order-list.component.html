@@ -1,1 +1,31 @@
-<p>customer-order-list works!</p>
+<div class="container" *ngIf="orderList.length !== 0">
+    <div class="card" *ngFor="let orderList of orderList"
+        style="margin-top: 100px; border: solid; border-color: #02156e;">
+        <div class="card-body">
+            <h3 class="card-title">{{ orderList.restaurant }} </h3>
+            <h6> {{ orderList.dateCommande }}</h6>
+            <h6>{{ orderList.lieuLivraison }} </h6>
+            <h6>{{ orderList.etat }}</h6>
+            <div class="card-text">
+                <table class="table">
+                    <tr>
+                        <th scope="col">Plat</th>
+                        <th scope="col">Prix unitaire</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix total</th>
+                    </tr>
+                    <tr *ngFor="let food of orderList.plat">
+                        <td>{{ food.nom }}</td>
+                        <td>{{ food.prix }}Ar</td>
+                        <td>{{ food.quantite }}</td>
+                        <td>{{ food.prix * food.quantite }} Ar</td>
+                    </tr>
+                </table>
+                Prix total à payer : {{ orderList.prixTotal }} Ar
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="orderList.length === 0" style="margin-left: 600px">
+    <img src="../../../../assets/92163-food-courier.gif" alt="">
+</div>
