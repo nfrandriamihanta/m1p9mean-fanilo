@@ -46,7 +46,7 @@ exports.signUp = async function signUp(user) {
         result = await client.db(connect.dbName).collection('UserManager').insertOne(user)
         mailer.sendMail(user.email, {
             "subject": "Tu viens de prendre la meilleure décision de ta vie !!",
-            "text": "Bienvenue chez E-Kaly! Profite du meilleur des resto de Madagascar sans bouger d'un pas"
+            "text": "Bonjour " + user.username + ", bienvenue chez E-Kaly! Profite du meilleur des resto de Madagascar sans bouger d'un pas"
         })
         console.log(result)
     } catch (e) {
@@ -117,9 +117,9 @@ exports.orderFood = async function orderFood(order) {
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('Order').insertOne(order)
-        mailer.sendMail(user.email, {
+        mailer.sendMail(order.client.email, {
             "subject": "Commande envoyée",
-            "text": "Bonjour, votre commande chez " + order.restaurant + " a été bien envoyé, elle est en attente de traitement"
+            "text": "Bonjour " + order.client.username + ", votre commande chez " + order.restaurant + " a été bien envoyé, elle est en attente de traitement"
         })
         console.log(result)
     } catch (e) {
