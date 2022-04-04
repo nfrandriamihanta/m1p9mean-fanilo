@@ -1,5 +1,6 @@
 const connect = require('../util/connect')
 const token = require('../util/token')
+const mailer = require('../util/mail')
 
 async function test() {
     const client = connect.getClient()
@@ -43,6 +44,10 @@ exports.signUp = async function signUp(user) {
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('UserManager').insertOne(user)
+        mailer.sendMail(user.email, {
+            "subject": "Tu viens de prendre la meilleure décision de ta vie !!",
+            "text": "Bienvenue chez E-Kaly! Profite du meilleur des resto de Madagascar sans bouger d'un pas"
+        })
         console.log(result)
     } catch (e) {
         console.error(e)
@@ -112,6 +117,10 @@ exports.orderFood = async function orderFood(order) {
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('Order').insertOne(order)
+        mailer.sendMail(user.email, {
+            "subject": "Commande envoyée",
+            "text": "Bonjour, votre commande chez " + order.restaurant + " a été bien envoyé, elle est en attente de traitement"
+        })
         console.log(result)
     } catch (e) {
         console.error(e)
