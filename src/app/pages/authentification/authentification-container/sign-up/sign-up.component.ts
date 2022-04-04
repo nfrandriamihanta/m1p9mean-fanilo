@@ -16,6 +16,7 @@ export class SignUpComponent implements OnInit {
     password: new FormControl(''),
   });
   message = ""
+  isClicked = false
 
   constructor(private ds: DataServiceService, private router: Router) {
 
@@ -26,6 +27,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSignUp() {
+    this.isClicked = true
     const newUser = { "username": this.signUpForm.value.username, "email": this.signUpForm.value.email, "password": this.signUpForm.value.password, "role": "client" }
     this.ds.postData('inscription', newUser).subscribe(res => {
       if (res.status === 200) {

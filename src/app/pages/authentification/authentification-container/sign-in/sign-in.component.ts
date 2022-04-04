@@ -15,23 +15,27 @@ export class SignInComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
   message = ""
+  isClicked = false
 
   constructor(private ds: DataServiceService, private router: Router) {
 
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem("token")) this.router.navigate(['client'])
-    // this.signInForm = this.fb.group()
+    if (localStorage.getItem("role")) {
+      if (localStorage.getItem("role") === "client") this.router.navigate(['client'])
+    }
   }
 
   onSignIn() {
+    this.isClicked = true
     const user = { "username": this.signInForm.value.username, "password": this.signInForm.value.password }
     this.ds.postData('connexion', user).subscribe(res => {
       if (res.status === 200) {
         localStorage.setItem('token', res.res.token)
         localStorage.setItem('username', res.res.username)
         localStorage.setItem('email', res.res.email)
+        localStorage.setItem('role', res.res.role)
         this.message = res.message
         if (res.res.role === "client")
           this.router.navigate(['client'])

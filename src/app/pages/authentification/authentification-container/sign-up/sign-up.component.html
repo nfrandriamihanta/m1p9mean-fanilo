@@ -14,5 +14,9 @@
         <label for="password" class="form-label">Mot de passe</label>
         <input type="password" class="form-control" id="password" formControlName="password">
     </div>
-    <button type="submit" class="btn btn-primary" style="background-color: #02156e;">S'inscrire</button>
+    <button type="submit" class="btn btn-primary" style="background-color: #02156e;"
+        [disabled]="isClicked">S'inscrire</button>
+    <div style="margin-left: 3%;" *ngIf="isClicked">
+        <img src="../../../../../assets/98112-circle-loading-progress-indicator.gif" alt="" width="60">
+    </div>
 </form>
