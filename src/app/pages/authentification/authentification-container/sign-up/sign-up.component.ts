@@ -34,12 +34,14 @@ export class SignUpComponent implements OnInit {
         this.router.navigate([''])
       } else if (res.status === 400) {
         this.message = res.message
+        this.isClicked = false
         this.router.navigate(['inscription'])
       }
     },
       err => {
         console.log(err)
         this.message = "Un problème de serveur est survenu lors de l'opération"
+        this.isClicked = false
         this.router.navigate(['inscription'])
       }
 
