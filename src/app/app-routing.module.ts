@@ -7,6 +7,7 @@ import { SignUpComponent } from './pages/authentification/authentification-conta
 import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
 import { CustomerOrderListComponent } from './pages/customer/customer-order-list/customer-order-list.component';
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
+import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,16 @@ const routes: Routes = [
       {
         path: 'mes-commandes',
         component: CustomerOrderListComponent
+      }
+    ]
+  },
+  {
+    path: 'restaurateur',
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: FoodManagerComponent
       }
     ]
   }

@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultLayoutComponent implements OnInit {
 
+  path = {
+    "accueil": "",
+    "commande": ""
+  }
   constructor() { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("role")) {
+      if (localStorage.getItem("role") === "client") {
+        this.path.accueil = ""
+        this.path.commande = "mes-commandes"
+        console.log()
+      }
+      if (localStorage.getItem("role") === "restaurateur") {
+
+      }
+    }
   }
 
 }

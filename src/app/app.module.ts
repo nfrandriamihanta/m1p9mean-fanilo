@@ -12,6 +12,7 @@ import { DefaultLayoutComponent } from './container/default-layout/default-layou
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
 import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
 import { CustomerOrderListComponent } from './pages/customer/customer-order-list/customer-order-list.component';
+import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CustomerOrderListComponent } from './pages/customer/customer-order-list
     DefaultLayoutComponent,
     CustomerRestoListComponent,
     CustomerFoodListComponent,
-    CustomerOrderListComponent
+    CustomerOrderListComponent,
+    FoodManagerComponent
   ],
   imports: [
     BrowserModule,

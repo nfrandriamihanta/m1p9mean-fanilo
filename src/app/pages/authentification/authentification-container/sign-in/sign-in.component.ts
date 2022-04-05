@@ -24,6 +24,7 @@ export class SignInComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem("role")) {
       if (localStorage.getItem("role") === "client") this.router.navigate(['client'])
+      if (localStorage.getItem("role") === "restaurateur") this.router.navigate(['restaurateur'])
     }
   }
 
@@ -39,6 +40,10 @@ export class SignInComponent implements OnInit {
         this.message = res.message
         if (res.res.role === "client")
           this.router.navigate(['client'])
+        if (res.res.role === "restaurateur") {
+          localStorage.setItem("restaurant", res.res.restaurant.nom)
+          this.router.navigate(['restaurateur'])
+        }
       } else if (res.status === 400) {
         this.message = res.message
         this.isClicked = false
