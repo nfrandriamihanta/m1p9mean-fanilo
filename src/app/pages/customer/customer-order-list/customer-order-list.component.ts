@@ -10,6 +10,7 @@ import { DataServiceService } from 'src/app/service/data-service.service';
 export class CustomerOrderListComponent implements OnInit {
 
   orderList: any[] = []
+  isLoading = true
   constructor(private ds: DataServiceService) { }
 
   ngOnInit(): void {
@@ -17,6 +18,7 @@ export class CustomerOrderListComponent implements OnInit {
       "client.username": localStorage.getItem("username"), "client.email": localStorage.getItem("email")
     })).then(res => {
       this.orderList = res.res
+      this.isLoading = false
       console.log(this.orderList)
     })
   }
