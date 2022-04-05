@@ -5,6 +5,7 @@ const router = express.Router();
 const app = express()
 
 const user = require("./user/user")
+const restorer = require("./restorer/restorer")
 const cors = require('cors');
 
 
@@ -156,6 +157,42 @@ router.post("/commande", async function (req, res) {
     let result = {}
     try {
         result = await user.findOrder(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/plat/modification", async function (req, res) {
+    let result = {}
+    try {
+        result = await restorer.updateFood(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/commande/modification", async function (req, res) {
+    let result = {}
+    try {
+        result = await restorer.updateOrder(req.body)
         console.log(result)
         res.status(200).json({
             "status": 200,
