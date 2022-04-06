@@ -12,6 +12,7 @@ export class FoodManagerComponent implements OnInit {
 
   restaurant: any = null
   foodList: any[] = []
+  idFood: number = 1
 
   addFoodForm = new FormGroup({
     plat: new FormControl('', Validators.required),
@@ -19,7 +20,7 @@ export class FoodManagerComponent implements OnInit {
     benefice: new FormControl('', Validators.required)
   });
 
-  idFood: number = 0
+
 
   constructor(private ds: DataServiceService) {
     this.load(this.ds.getData('resto/' + localStorage.getItem("restaurant"))).then(res => {
@@ -99,6 +100,11 @@ export class FoodManagerComponent implements OnInit {
 
   passIdFood(id: number) {
     this.idFood = id
+    this.addFoodForm = new FormGroup({
+      plat: new FormControl(this.foodList[this.idFood].nom, Validators.required),
+      prix: new FormControl(this.foodList[this.idFood].prix, Validators.required),
+      benefice: new FormControl(this.foodList[this.idFood].benefice, Validators.required)
+    })
   }
 
 }
