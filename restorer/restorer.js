@@ -72,7 +72,7 @@ exports.updateOrder = async function updateOrder(order) {
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('Order').updateOne({
-            "client.username": order.client,
+            "client.username": order.client.username,
             "dateCommande": order.dateCommande
         }, { $set: { "etat": order.etat } })
         mailer.sendMail(order.client.email, {
