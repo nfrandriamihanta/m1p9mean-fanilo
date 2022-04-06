@@ -77,7 +77,7 @@ exports.updateOrder = async function updateOrder(order) {
         }, { $set: { "etat": order.etat } })
         mailer.sendMail(order.client.email, {
             "subject": "Changement d'état de la commande",
-            "text": "Bonjour " + order.client.username + ", l'état de votre commande a été changé en commande " + order.etat
+            "text": "Bonjour " + order.client.username + ", ta commande chez " + order.restaurant + " a été changé en commande " + order.etat
         })
         console.log(result)
     } catch (e) {
