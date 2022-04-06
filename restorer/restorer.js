@@ -1,4 +1,5 @@
 const connect = require('../util/connect')
+const mailer = require('../util/mail')
 
 exports.updateFood = async function updateFood(newFoodData) {
     const client = connect.getClient()
@@ -74,6 +75,10 @@ exports.updateOrder = async function updateOrder(order) {
             "client.username": order.client,
             "dateCommande": order.dateCommande
         }, { $set: { "etat": order.etat } })
+        mailer.sendMail(order.client.email, {
+            "subject": "Changement d'état de la commande",
+            "text": "Bonjour " + order.client.username + ", l'état de votre commande a été changé en commande " + order.etat
+        })
         console.log(result)
     } catch (e) {
         console.error(e)
@@ -83,6 +88,26 @@ exports.updateOrder = async function updateOrder(order) {
     return result
 }
 
+
+exports.findOrder = async function findOrder(filter) {
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('Order').find(filter).toArray()
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+    return result
+}
+
+// findOrder({
+    // "restaurant": "Venus",
+    // "etat": "en attente"
+// })
 
 // order = {
 //     "client": "Ny Aina Fanilo",
