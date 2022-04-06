@@ -13,6 +13,8 @@ import { CustomerRestoListComponent } from './pages/customer/customer-resto-list
 import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
 import { CustomerOrderListComponent } from './pages/customer/customer-order-list/customer-order-list.component';
 import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager.component';
+import { RestorerOrderManagerComponent } from './pages/restorer/restorer-order-manager/restorer-order-manager.component';
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager
     CustomerRestoListComponent,
     CustomerFoodListComponent,
     CustomerOrderListComponent,
-    FoodManagerComponent
+    FoodManagerComponent,
+    RestorerOrderManagerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    DragDropModule,
     AppRoutingModule
   ],
   providers: [],

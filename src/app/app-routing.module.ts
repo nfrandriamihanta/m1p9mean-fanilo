@@ -8,6 +8,7 @@ import { CustomerFoodListComponent } from './pages/customer/customer-food-list/c
 import { CustomerOrderListComponent } from './pages/customer/customer-order-list/customer-order-list.component';
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
 import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager.component';
+import { RestorerOrderManagerComponent } from './pages/restorer/restorer-order-manager/restorer-order-manager.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
       {
         path: '',
         component: FoodManagerComponent
+      },
+      {
+        path: 'gestion-commandes',
+        component: RestorerOrderManagerComponent
       }
     ]
   }

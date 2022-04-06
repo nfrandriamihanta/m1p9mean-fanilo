@@ -21,7 +21,7 @@ export class DefaultLayoutComponent implements OnInit {
         console.log()
       }
       if (localStorage.getItem("role") === "restaurateur") {
-
+        this.path.commande = "gestion-commandes"
       }
     }
   }
