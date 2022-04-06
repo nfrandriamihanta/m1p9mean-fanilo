@@ -16,9 +16,7 @@ export class RestorerOrderManagerComponent implements OnInit {
   waitingOrderStr: string[] = []
   readyToDeliverStr: string[] = []
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  isLoading = true
 
   constructor(private ds: DataServiceService) { }
 
@@ -36,7 +34,10 @@ export class RestorerOrderManagerComponent implements OnInit {
       })).then(res => {
         this.readyToDeliver = res.res
       })
-    ]).then(res => { this.toStringOrder() })
+    ]).then(res => {
+      this.toStringOrder()
+      this.isLoading = false
+    })
   }
 
   load(obs: Observable<any>) {
@@ -56,7 +57,7 @@ export class RestorerOrderManagerComponent implements OnInit {
       this.waitingOrderStr[i] += "</ul>"
     }
     for (let i = 0; i < this.readyToDeliver.length; i++) {
-      this.readyToDeliverStr[i] = "<h3>" + this.readyToDeliver[i].client.username + "</h3><ul>"
+      this.readyToDeliverStr[i] = "<h6>" + this.readyToDeliver[i].dateCommande + "</h6><ul>"
       for (let u = 0; u < this.readyToDeliver[i].plat.length; u++) {
         this.readyToDeliverStr[i] += "<li>" + this.readyToDeliver[i].plat[u].nom + " " + this.readyToDeliver[i].plat[u].quantite + "</li>"
       }
@@ -66,6 +67,17 @@ export class RestorerOrderManagerComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     console.log(this.waitingOrder[event.previousIndex])
+    this.ds.postData('commande/modification', {
+      "client": {
+        "username": this.waitingOrder[event.previousIndex].client.username,
+        "email": this.waitingOrder[event.previousIndex].client.email
+      },
+      "dateCommande": this.waitingOrder[event.previousIndex].dateCommande,
+      "etat": "à livrer"
+    }).subscribe(res => {
+      if (res.status === 200)
+        console.log(res)
+    })
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {

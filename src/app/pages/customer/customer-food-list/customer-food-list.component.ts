@@ -115,7 +115,8 @@ export class CustomerFoodListComponent implements OnInit {
         "restaurant": this.restaurant.restaurant.nom,
         "lieuLivraison": this.orderForm.value.place,
         "prixTotal": this.totalPrice,
-        "beneficeTotal": this.totalGain
+        "beneficeTotal": this.totalGain,
+        "beneficeEkaly": (this.totalGain * 5) / 100
       }
       console.log(order)
       this.ds.postData('commander', order).subscribe(res => {

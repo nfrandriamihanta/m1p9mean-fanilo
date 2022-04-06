@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!isLoading">
     <div class="example-container">
         <h2>En attente</h2>
 
@@ -16,4 +16,7 @@
             <div class="example-box" *ngFor="let item of readyToDeliverStr" cdkDrag [innerHtml]="item"></div>
         </div>
     </div>
+</div>
+<div *ngIf="isLoading" style="margin-left: 30%">
+    <img src="../../../../assets/92163-food-courier.gif" alt="">
 </div>
