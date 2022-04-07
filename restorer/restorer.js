@@ -105,8 +105,8 @@ exports.findOrder = async function findOrder(filter) {
 }
 
 // findOrder({
-    // "restaurant": "Venus",
-    // "etat": "en attente"
+// "restaurant": "Venus",
+// "etat": "en attente"
 // })
 
 // order = {
@@ -115,3 +115,49 @@ exports.findOrder = async function findOrder(filter) {
 //     "etat": "cours"
 // }
 // updateOrder(order)
+
+async function findOrderBtwDates(gte, lte, restaurant, client) {
+    let result = null
+    try {
+        result = await client.db(connect.dbName).collection('Order').find({
+            "dateCommande": {
+                $gte: ISODate(gte), $lte: ISODate(lte)
+            },
+            "restaurant": restaurant
+        }).toArray()
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+
+    }
+    return result
+}
+
+function sumBenefice(listOrder, beneficiaire) {
+    let result = 0
+    for (order of listOrder) {
+        if (beneficiaire === "restaurant")
+            result += order.beneficeTotal
+        if (beneficiaire === "ekaly")
+            result += order.beneficeEkaly
+    }
+    return result
+}
+
+async function findBenefice(filter) {
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        let listOrder = await findOrderBtwDates(filter.gte, filter.lte, filter.restaurant, client)
+        if (result.length !== 0) {
+            result = sumBenefice(listOrder, filter.beneficiaire)
+        }
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+    return result
+}

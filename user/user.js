@@ -105,13 +105,7 @@ exports.search = async function search(filter) {
 
 exports.orderFood = async function orderFood(order) {
 
-    date = new Date()
-    date.setHours(date.getHours() + 3)
-    date = date.toISOString().
-        replace(/T/, ' ').      // replace T with a space
-        replace(/\..+/, '')     // delete the dot and everything after
-    console.log(date)
-    Object.assign(order, { "dateCommande": date, "etat": "en attente" })
+    Object.assign(order, { "dateCommande": new Date(), "etat": "en attente" })
     const client = connect.getClient()
     let result = null
     try {
