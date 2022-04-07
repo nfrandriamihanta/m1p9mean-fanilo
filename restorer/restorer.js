@@ -116,53 +116,53 @@ exports.findOrder = async function findOrder(filter) {
 // }
 // updateOrder(order)
 
-async function findOrderBtwDates(gte, lte, restaurant, client) {
-    let result = null
-    try {
-        result = await client.db(connect.dbName).collection('Order').find({
-            "dateCommande": {
-                $gte: ISODate(gte), $lte: ISODate(lte)
-            },
-            "restaurant": restaurant
-        }).toArray()
-        console.log(result)
-    } catch (e) {
-        console.error(e)
-    } finally {
+// async function findOrderBtwDates(gte, lte, restaurant, client) {
+//     let result = null
+//     try {
+//         result = await client.db(connect.dbName).collection('Order').find({
+//             "dateCommande": {
+//                 $gte: ISODate(gte), $lte: ISODate(lte)
+//             },
+//             "restaurant": restaurant
+//         }).toArray()
+//         console.log(result)
+//     } catch (e) {
+//         console.error(e)
+//     } finally {
 
-    }
-    return result
-}
+//     }
+//     return result
+// }
 
-function sumBenefice(listOrder, beneficiaire) {
-    let result = 0
-    for (order of listOrder) {
-        if (beneficiaire === "restaurant")
-            result += order.beneficeTotal
-        if (beneficiaire === "ekaly")
-            result += order.beneficeEkaly
-    }
-    return result
-}
+// function sumBenefice(listOrder, beneficiaire) {
+//     let result = 0
+//     for (order of listOrder) {
+//         if (beneficiaire === "restaurant")
+//             result += order.beneficeTotal
+//         if (beneficiaire === "ekaly")
+//             result += order.beneficeEkaly
+//     }
+//     return result
+// }
 
-async function findBenefice(filter) {
-    const client = connect.getClient()
-    let result = null
-    try {
-        await client.connect()
-        let listOrder = await findOrderBtwDates(filter.gte, filter.lte, filter.restaurant, client)
-        if (result.length !== 0) {
-            result = sumBenefice(listOrder, filter.beneficiaire)
-        }
-    } catch (e) {
-        console.error(e)
-    } finally {
-        client.close()
-    }
-    return result
-}
+// async function findBenefice(filter) {
+//     const client = connect.getClient()
+//     let result = null
+//     try {
+//         await client.connect()
+//         let listOrder = await findOrderBtwDates(filter.gte, filter.lte, filter.restaurant, client)
+//         if (result.length !== 0) {
+//             result = sumBenefice(listOrder, filter.beneficiaire)
+//         }
+//     } catch (e) {
+//         console.error(e)
+//     } finally {
+//         client.close()
+//     }
+//     return result
+// }
 
-async function testAggregation() {
+exports.calculateProfits = async function calculateProfits(data) {
     const client = connect.getClient()
     let result = null
     console.log(new Date())
@@ -171,13 +171,13 @@ async function testAggregation() {
         result = await client.db(connect.dbName).collection('Order').aggregate([
             {
                 $match: {
-                    "restaurant": "Venus", "dateCommande": {
-                        $gte: new Date("2021-01-01"), $lte: new Date("2023-01-01")
+                    "restaurant": data.restaurant, "dateCommande": {
+                        $gte: data.gte.getTime(), $lte: data.lte.getTime()
                     }
                 }
             },
             {
-                $group: { "_id": "$dateCommande", "beneficeResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+                $group: { "_id": "$dateCommande", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
             }
         ]).toArray()
         console.log(result)
@@ -189,4 +189,9 @@ async function testAggregation() {
     return result
 }
 
-testAggregation()
+// data = {
+//     "restaurant": "Venus",
+//     "gte": new Date("2021-01-01"),
+//     "lte": new Date("2022-04-07 23:00"),
+// }
+// calculateProfits(data)

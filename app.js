@@ -225,23 +225,23 @@ router.post("/gestion-commandes", async function (req, res) {
     }
 })
 
-// router.post("/benefice", async function (req, res) {
-//     let result = {}
-//     try {
-//         result = await restorer.(req.body)
-//         console.log(result)
-//         res.status(200).json({
-//             "status": 200,
-//             "res": result
-//         })
-//     } catch (e) {
-//         console.error(e)
-//         res.status(400).json({
-//             "message": e,
-//             "status": 400
-//         })
-//     }
-// })
+router.post("/benefice-resto", async function (req, res) {
+    let result = {}
+    try {
+        result = await restorer.calculateProfits(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
 
 
 // start the server listening for requests
