@@ -178,7 +178,7 @@ exports.calculateProfits = async function calculateProfits(data) {
                     }
                 },
                 {
-                    $group: { "_id": "$dateCommande", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+                    $group: { "_id": "$date", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
                 }
             ]).toArray()
         } else {
@@ -190,7 +190,7 @@ exports.calculateProfits = async function calculateProfits(data) {
                     }
                 },
                 {
-                    $group: { "_id": "$dateCommande", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+                    $group: { "_id": "$date", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
                 }
             ]).toArray()
         }
