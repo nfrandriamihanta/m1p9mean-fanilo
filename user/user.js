@@ -105,7 +105,7 @@ exports.search = async function search(filter) {
 
 exports.orderFood = async function orderFood(order) {
 
-    Object.assign(order, { "dateCommande": new Date(), "etat": "en attente" })
+    Object.assign(order, { "etat": "en attente" })
     const client = connect.getClient()
     let result = null
     try {
