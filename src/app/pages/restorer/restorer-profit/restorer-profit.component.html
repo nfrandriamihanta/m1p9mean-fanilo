@@ -1,6 +1,24 @@
-<div class="container">
-    <ngx-charts-bar-vertical [view]="[1000,400]" [results]="chartData" [xAxisLabel]="'Products'"
-        [legendTitle]="'Product Sale Chart'" [yAxisLabel]="'Sale'" [legend]="true" [showXAxisLabel]="true"
-        [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [gradient]="false">
-    </ngx-charts-bar-vertical>
+<div class="container-fluid">
+    <div id="searchBar">
+        <div id="content">
+            <h2 style="color: white; ">Retrouvez le meilleur des restaurants de Madagascar</h2>
+            <form class="form" style="margin-top: 3%; margin-left: 31%;">
+                <ul class=" list-group list-group-horizontal">
+                    <li class="list-group-item"><input type="text" class="form-control"
+                            style="width: 230%; height: 45px; font-family:Arial, FontAwesome"
+                            placeholder="&#xF002; Restaurant" formControlName="restaurant"></li>
+                    <li class="list-group-item" style="margin-left: 20%;"><button class="btn btn-primary"
+                            style="height: 45px; width: 150%;">
+                            Rechercher
+                        </button>
+                </ul>
+            </form>
+        </div>
+    </div>
+    <div>
+        <ngx-charts-bar-vertical [view]="[1000,400]" [results]="chartData" [xAxisLabel]="'Date'"
+            [legendTitle]="'Bénéfice'" [yAxisLabel]="'Bénéfice'" [legend]="true" [showXAxisLabel]="true"
+            [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [gradient]="false">
+        </ngx-charts-bar-vertical>
+    </div>
 </div>

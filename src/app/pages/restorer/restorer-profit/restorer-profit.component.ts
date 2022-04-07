@@ -10,14 +10,6 @@ import { DataServiceService } from 'src/app/service/data-service.service';
 })
 export class RestorerProfitComponent implements OnInit {
 
-  saleData = [
-    { name: "Mobiles", value: 105000 },
-    { name: "Laptop", value: 55000 },
-    { name: "AC", value: 15000 },
-    { name: "Headset", value: 150000 },
-    { name: "Fridge", value: 20000 }
-  ];
-
   chartData: any[] = []
 
   profitsPerDay: any[] = []
@@ -45,7 +37,7 @@ export class RestorerProfitComponent implements OnInit {
   fillChart() {
     let newTab: any[] = []
     for (let i = 0; i < this.profitsPerDay.length; i++) {
-      newTab[i] = { "name": this.dp.transform(this.profitsPerDay[i]._id, "dd-MM-YYYY hh:mm a"), "value": this.profitsPerDay[i].beneficeTotalResto }
+      newTab[i] = { "name": this.dp.transform(this.profitsPerDay[i]._id, "YYYY-dd-MM hh:mm a"), "value": this.profitsPerDay[i].beneficeTotalResto }
     }
     this.chartData = newTab
   }

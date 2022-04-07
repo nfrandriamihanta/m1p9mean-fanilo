@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Observable } from 'rxjs';
 import { DataServiceService } from 'src/app/service/data-service.service';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-restorer-order-manager',
@@ -18,7 +19,7 @@ export class RestorerOrderManagerComponent implements OnInit {
 
   isLoading = true
 
-  constructor(private ds: DataServiceService) { }
+  constructor(private ds: DataServiceService, private dp: DatePipe) { }
 
   ngOnInit(): void {
     Promise.all([
@@ -51,14 +52,14 @@ export class RestorerOrderManagerComponent implements OnInit {
 
   toStringOrder() {
     for (let i = 0; i < this.waitingOrder.length; i++) {
-      this.waitingOrderStr[i] = "<h6>" + this.waitingOrder[i].dateCommande + "</h6><ul>"
+      this.waitingOrderStr[i] = "<h6>" + this.dp.transform(this.waitingOrder[i].dateCommande, "dd-MM-YYYY hh:mm a") + "</h6><ul>"
       for (let u = 0; u < this.waitingOrder[i].plat.length; u++) {
         this.waitingOrderStr[i] += "<li>" + this.waitingOrder[i].plat[u].nom + " " + this.waitingOrder[i].plat[u].quantite + "</li>"
       }
       this.waitingOrderStr[i] += "</ul>"
     }
     for (let i = 0; i < this.readyToDeliver.length; i++) {
-      this.readyToDeliverStr[i] = "<h6>" + this.readyToDeliver[i].dateCommande + "</h6><ul>"
+      this.readyToDeliverStr[i] = "<h6>" + this.dp.transform(this.readyToDeliver[i].dateCommande, "dd-MM-YYYY hh:mm a") + "</h6><ul>"
       for (let u = 0; u < this.readyToDeliver[i].plat.length; u++) {
         this.readyToDeliverStr[i] += "<li>" + this.readyToDeliver[i].plat[u].nom + " " + this.readyToDeliver[i].plat[u].quantite + "</li>"
       }
