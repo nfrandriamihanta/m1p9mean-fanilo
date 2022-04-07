@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -118,7 +118,7 @@ export class CustomerFoodListComponent implements OnInit {
         "prixTotal": this.totalPrice,
         "beneficeTotal": this.totalGain,
         "beneficeEkaly": (this.totalGain * 5) / 100,
-        "dateCommande": this.dp.transform(new Date(), 'dd-MM-YYYY')
+        "dateCommande": this.dp.transform(new Date(), 'dd-MM-YYYY hh:mm a')
       }
       console.log(order)
       this.ds.postData('commander', order).subscribe(res => {
