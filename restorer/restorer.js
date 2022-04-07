@@ -162,7 +162,7 @@ exports.findOrder = async function findOrder(filter) {
 //     return result
 // }
 
-async function calculateProfits(data) {
+exports.calculateProfits = async function calculateProfits(data) {
     const client = connect.getClient()
     let result = null
     console.log(new Date())
@@ -203,8 +203,3 @@ async function calculateProfits(data) {
     }
     return result
 }
-
-data = {
-    "restaurant": "Venus"
-}
-calculateProfits(data)
