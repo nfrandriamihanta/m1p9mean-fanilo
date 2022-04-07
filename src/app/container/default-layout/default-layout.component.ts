@@ -9,7 +9,8 @@ export class DefaultLayoutComponent implements OnInit {
 
   path = {
     "accueil": "",
-    "commande": ""
+    "commande": "",
+    "benefice": ""
   }
   constructor() { }
 
@@ -22,6 +23,7 @@ export class DefaultLayoutComponent implements OnInit {
       }
       if (localStorage.getItem("role") === "restaurateur") {
         this.path.commande = "gestion-commandes"
+        this.path.benefice = "benefice"
       }
     }
   }

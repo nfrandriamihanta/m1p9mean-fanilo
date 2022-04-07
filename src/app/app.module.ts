@@ -16,6 +16,7 @@ import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager
 import { RestorerOrderManagerComponent } from './pages/restorer/restorer-order-manager/restorer-order-manager.component';
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { DatePipe } from '@angular/common';
+import { RestorerProfitComponent } from './pages/restorer/restorer-profit/restorer-profit.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { DatePipe } from '@angular/common';
     CustomerFoodListComponent,
     CustomerOrderListComponent,
     FoodManagerComponent,
-    RestorerOrderManagerComponent
+    RestorerOrderManagerComponent,
+    RestorerProfitComponent
   ],
   imports: [
     BrowserModule,

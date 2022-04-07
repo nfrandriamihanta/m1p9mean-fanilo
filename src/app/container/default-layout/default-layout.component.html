@@ -11,6 +11,9 @@
                 <a [routerLink]="path.commande">
                     <li class="list-group-item">Mes commandes</li>
                 </a>
+                <a [routerLink]="path.benefice" *ngIf="path.benefice">
+                    <li class="list-group-item">Bénéfice</li>
+                </a>
                 <li class="list-group-item">Deconnexion</li>
             </ul>
         </div>
