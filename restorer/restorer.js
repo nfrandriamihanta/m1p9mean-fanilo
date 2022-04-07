@@ -162,24 +162,39 @@ exports.findOrder = async function findOrder(filter) {
 //     return result
 // }
 
-exports.calculateProfits = async function calculateProfits(data) {
+async function calculateProfits(data) {
     const client = connect.getClient()
     let result = null
     console.log(new Date())
     try {
         await client.connect()
-        result = await client.db(connect.dbName).collection('Order').aggregate([
-            {
-                $match: {
-                    "restaurant": data.restaurant, "dateCommande": {
-                        $gte: data.gte.getTime(), $lte: data.lte.getTime()
+        if (data.gte && data.lte) {
+            result = await client.db(connect.dbName).collection('Order').aggregate([
+                {
+                    $match: {
+                        "restaurant": data.restaurant, "dateCommande": {
+                            $gte: data.gte.getTime(), $lte: data.lte.getTime()
+                        }
                     }
+                },
+                {
+                    $group: { "_id": "$dateCommande", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
                 }
-            },
-            {
-                $group: { "_id": "$dateCommande", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
-            }
-        ]).toArray()
+            ]).toArray()
+        } else {
+            console.log("tsy misy filtre")
+            result = await client.db(connect.dbName).collection('Order').aggregate([
+                {
+                    $match: {
+                        "restaurant": data.restaurant
+                    }
+                },
+                {
+                    $group: { "_id": "$dateCommande", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+                }
+            ]).toArray()
+        }
+
         console.log(result)
     } catch (e) {
         console.error(e)
@@ -189,9 +204,7 @@ exports.calculateProfits = async function calculateProfits(data) {
     return result
 }
 
-// data = {
-//     "restaurant": "Venus",
-//     "gte": new Date("2021-01-01"),
-//     "lte": new Date("2022-04-07 23:00"),
-// }
-// calculateProfits(data)
+data = {
+    "restaurant": "Venus"
+}
+calculateProfits(data)
