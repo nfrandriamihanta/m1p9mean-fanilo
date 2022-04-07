@@ -118,7 +118,7 @@ export class CustomerFoodListComponent implements OnInit {
         "prixTotal": this.totalPrice,
         "beneficeTotal": this.totalGain,
         "beneficeEkaly": (this.totalGain * 5) / 100,
-        "dateCommande": this.dp.transform(new Date(), 'dd-MM-YYYY hh:mm a')
+        "dateCommande": Date.now()
       }
       console.log(order)
       this.ds.postData('commander', order).subscribe(res => {

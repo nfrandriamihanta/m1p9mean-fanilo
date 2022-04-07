@@ -3,7 +3,7 @@
         style="margin-top: 100px; border: solid; border-color: #02156e;">
         <div class="card-body">
             <h3 class="card-title">{{ orderList.restaurant }} </h3>
-            <h6> {{ orderList.dateCommande }}</h6>
+            <h6> {{ orderList.dateCommande | date: 'dd-MM-YYYY hh:mm a' }}</h6>
             <h6>{{ orderList.lieuLivraison }} </h6>
             <h6>{{ orderList.etat }}</h6>
             <div class="card-text">
