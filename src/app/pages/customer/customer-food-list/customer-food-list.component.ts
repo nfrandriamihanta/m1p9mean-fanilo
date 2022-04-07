@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,7 +21,7 @@ export class CustomerFoodListComponent implements OnInit {
     place: new FormControl('', Validators.required)
   });
 
-  constructor(private actRoute: ActivatedRoute, private ds: DataServiceService, private route: Router) { }
+  constructor(private actRoute: ActivatedRoute, private ds: DataServiceService, private route: Router, private dp: DatePipe) { }
 
   ngOnInit(): void {
     this.resto = this.actRoute.snapshot.params['restaurant']
@@ -116,7 +117,8 @@ export class CustomerFoodListComponent implements OnInit {
         "lieuLivraison": this.orderForm.value.place,
         "prixTotal": this.totalPrice,
         "beneficeTotal": this.totalGain,
-        "beneficeEkaly": (this.totalGain * 5) / 100
+        "beneficeEkaly": (this.totalGain * 5) / 100,
+        "dateCommande": this.dp.transform(new Date(), 'dd-MM-YYYY')
       }
       console.log(order)
       this.ds.postData('commander', order).subscribe(res => {

@@ -15,6 +15,7 @@ import { CustomerOrderListComponent } from './pages/customer/customer-order-list
 import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager.component';
 import { RestorerOrderManagerComponent } from './pages/restorer/restorer-order-manager/restorer-order-manager.component';
 import { DragDropModule } from '@angular/cdk/drag-drop'
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
     DragDropModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
