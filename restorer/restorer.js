@@ -165,11 +165,16 @@ async function findBenefice(filter) {
 async function testAggregation() {
     const client = connect.getClient()
     let result = null
+    console.log(new Date())
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('Order').aggregate([
             {
-                $match: { "restaurant": "Venus" }
+                $match: {
+                    "restaurant": "Venus", "dateCommande": {
+                        $gte: new Date("2021-01-01"), $lte: new Date("2023-01-01")
+                    }
+                }
             },
             {
                 $group: { "_id": "$dateCommande", "beneficeResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
