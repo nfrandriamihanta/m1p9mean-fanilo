@@ -161,3 +161,27 @@ async function findBenefice(filter) {
     }
     return result
 }
+
+async function testAggregation() {
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('Order').aggregate([
+            {
+                $match: { "restaurant": "Venus" }
+            },
+            {
+                $group: { "_id": "$dateCommande", "beneficeResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+            }
+        ]).toArray()
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+    return result
+}
+
+testAggregation()
