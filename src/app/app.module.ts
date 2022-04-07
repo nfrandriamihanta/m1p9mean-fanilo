@@ -17,6 +17,8 @@ import { RestorerOrderManagerComponent } from './pages/restorer/restorer-order-m
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import { DatePipe } from '@angular/common';
 import { RestorerProfitComponent } from './pages/restorer/restorer-profit/restorer-profit.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,12 @@ import { RestorerProfitComponent } from './pages/restorer/restorer-profit/restor
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     DragDropModule,
+    NgxChartsModule,
     AppRoutingModule
   ],
   providers: [DatePipe],
