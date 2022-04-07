@@ -27,6 +27,7 @@ export class RestorerOrderManagerComponent implements OnInit {
         "etat": "en attente"
       })).then(res => {
         this.waitingOrder = res.res
+        console.log(this.waitingOrder)
       }),
       this.load(this.ds.postData('gestion-commandes', {
         "restaurant": localStorage.getItem("restaurant"),
