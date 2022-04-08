@@ -298,6 +298,24 @@ router.post("/suppression-restaurant", async function (req, res) {
     }
 })
 
+router.post("/deconnexion", async function (req, res) {
+    let result = {}
+    try {
+        result = await user.logOut(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
 
 // start the server listening for requests
 app.listen(process.env.PORT || 3000,

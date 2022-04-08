@@ -138,3 +138,28 @@ exports.findOrder = async function findOrder(user) {
     }
     return result
 }
+
+exports.logOut = async function logOut(user) {
+    const client = connect.getClient()
+    let result = {}
+    try {
+        await client.connect()
+        // result = await client.db(connect.dbName).collection('UserManager').findOne(user)
+
+        if (result) {
+            // delete result.token
+            // console.log(result)
+            let bla = await client.db(connect.dbName).collection('UserManager').updateOne(user, {
+                $unset: {
+                    "token": ""
+                }
+            })
+            console.log(bla)
+        }
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+    return result
+}
