@@ -89,6 +89,30 @@ exports.updateOrder = async function updateOrder(order) {
 }
 
 
+exports.assignOrder = async function assignOrder(order) {
+    const client = connect.getClient()
+    let result = null
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('Order').updateOne({
+            "client.username": order.client.username,
+            "dateCommande": order.dateCommande
+        }, { $set: { "etat": order.etat, "livreur": order.livreur } })
+        mailer.sendMail(order.client.email, {
+            "subject": "Changement d'état de la commande",
+            "text": "Bonjour " + order.client.username + ", ta commande chez " + order.restaurant + " a été changé en commande " + order.etat
+        })
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        await client.close()
+    }
+    return result
+}
+
+
+
 exports.findOrder = async function findOrder(filter) {
     const client = connect.getClient()
     let result = null

@@ -209,6 +209,24 @@ router.post("/commande/modification", async function (req, res) {
     }
 })
 
+router.post("/commande/assignation", async function (req, res) {
+    let result = {}
+    try {
+        result = await restorer.assignOrder(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
 router.post("/gestion-commandes", async function (req, res) {
     let result = {}
     try {
