@@ -47,7 +47,7 @@ export class DeliveryOrderManagerComponent implements OnInit {
   }
 
   onFinish(id: number) {
-    this.ds.postData('commande/assignation', {
+    this.ds.postData('commande/modification', {
       "client": {
         "username": this.assignedOrderList[id].client.username,
         "email": this.assignedOrderList[id].client.email

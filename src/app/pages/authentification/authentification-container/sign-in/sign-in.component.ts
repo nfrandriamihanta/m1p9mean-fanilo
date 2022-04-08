@@ -26,6 +26,7 @@ export class SignInComponent implements OnInit {
       if (localStorage.getItem("role") === "client") this.router.navigate(['client'])
       if (localStorage.getItem("role") === "restaurateur") this.router.navigate(['restaurateur'])
       if (localStorage.getItem("role") === "admin") this.router.navigate(['admin'])
+      if (localStorage.getItem("role") === "livreur") this.router.navigate(['livreur'])
     }
   }
 
