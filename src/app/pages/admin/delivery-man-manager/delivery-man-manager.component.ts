@@ -23,7 +23,7 @@ export class DeliveryManManagerComponent implements OnInit {
 
   ngOnInit(): void {
     this.load(this.ds.postData('livreur', {
-      "role": "admin"
+      "role": "livreur"
     })).then(res => {
       this.deliveryManList = res.res
       console.log(this.deliveryManList)
@@ -40,14 +40,14 @@ export class DeliveryManManagerComponent implements OnInit {
   }
 
   onAddDeliveryMan() {
-    let newResto: any = {
+    let newDeliver: any = {
       "username": this.addDeliveryManForm.value.username,
       "email": this.addDeliveryManForm.value.email,
       "password": this.addDeliveryManForm.value.password,
-      "role": "admin"
+      "role": "livreur"
     }
-    this.deliveryManList.push(newResto)
-    this.load(this.ds.postData('ajout-livreur', newResto)).then(res => {
+    this.deliveryManList.push(newDeliver)
+    this.load(this.ds.postData('ajout-livreur', newDeliver)).then(res => {
     })
 
     // console.log(this.deliveryManList)
@@ -69,7 +69,7 @@ export class DeliveryManManagerComponent implements OnInit {
         "username": this.addDeliveryManForm.value.username,
         "email": this.addDeliveryManForm.value.email,
         "password": this.addDeliveryManForm.value.password,
-        "role": "admin",
+        "role": "livreur",
       }
     }
     this.deliveryManList[this.idDeliveryMan] = newDeliveryManData.newData

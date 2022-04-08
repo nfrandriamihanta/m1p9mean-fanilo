@@ -1,0 +1,18 @@
+<div class="container">
+    <div class=" card" *ngFor="let item of readyToDeliver; let index = index">
+        <div class="card-body">
+            <h5 class="card-title">{{item.restaurant}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.client.username}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.dateCommande | date: 'dd-MM-YYYY hh:mm a'}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.lieuLivraison}}</h6>
+
+            <form [formGroup]="assignForm" (ngSubmit)="onAssign(index)">
+                <select formControlName="deliveryMan" class="form-control"
+                    style="width: 30%; margin-bottom: 2%; margin-top: 2%;">
+                    <option [value]="item.username" *ngFor="let item of deliveryManList">{{ item.username }}</option>
+                </select>
+                <button type="submit" class="btn btn-primary"> Assigner </button>
+            </form>
+        </div>
+    </div>
+</div>

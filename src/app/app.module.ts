@@ -21,6 +21,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager.component';
 import { DeliveryManManagerComponent } from './pages/admin/delivery-man-manager/delivery-man-manager.component';
+import { AdminOrderManagerComponent } from './pages/admin/admin-order-manager/admin-order-manager.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DeliveryManManagerComponent } from './pages/admin/delivery-man-manager/
     RestorerOrderManagerComponent,
     RestorerProfitComponent,
     RestoManagerComponent,
-    DeliveryManManagerComponent
+    DeliveryManManagerComponent,
+    AdminOrderManagerComponent
   ],
   imports: [
     BrowserModule,
