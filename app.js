@@ -354,6 +354,24 @@ router.post("/suppression-livreur", async function (req, res) {
     }
 })
 
+router.post("/livreur", async function (req, res) {
+    let result = {}
+    try {
+        result = await deliver.findDeliveryMan(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
 router.post("/deconnexion", async function (req, res) {
     let result = {}
     try {

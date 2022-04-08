@@ -45,12 +45,12 @@ exports.addDeliveryMan = async function addDeliveryMan(newDeliveryMan) {
 // updateDeliveryMan(newDeliveryMan)
 
 
-exports.deleteDeliveryMan = async function deleteDeliveryMan(condition) {
+exports.findDeliveryMan = async function findDeliveryMan(condition) {
     const client = connect.getClient()
     let result = null
     try {
         await client.connect()
-        result = await client.db(connect.dbName).collection('UserManager').deleteOne(condition)
+        result = await client.db(connect.dbName).collection('UserManager').find(condition).toArray()
         console.log(result)
     } catch (e) {
         console.error(e)
@@ -59,3 +59,5 @@ exports.deleteDeliveryMan = async function deleteDeliveryMan(condition) {
     }
     return result
 }
+
+
