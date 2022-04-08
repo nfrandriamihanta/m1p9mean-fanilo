@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { path } from 'd3';
 import { DefaultLayoutComponent } from './container/default-layout/default-layout.component';
+import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager.component';
 import { AuthentificationContainerComponent } from './pages/authentification/authentification-container/authentification-container.component';
 import { SignInComponent } from './pages/authentification/authentification-container/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/authentification/authentification-container/sign-up/sign-up.component';
@@ -63,6 +65,16 @@ const routes: Routes = [
       {
         path: 'benefice',
         component: RestorerProfitComponent
+      }
+    ]
+  },
+  {
+    path: 'admin',
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: RestoManagerComponent
       }
     ]
   }

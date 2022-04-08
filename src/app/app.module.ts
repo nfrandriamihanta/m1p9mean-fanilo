@@ -19,6 +19,7 @@ import { DatePipe } from '@angular/common';
 import { RestorerProfitComponent } from './pages/restorer/restorer-profit/restorer-profit.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CustomerOrderListComponent,
     FoodManagerComponent,
     RestorerOrderManagerComponent,
-    RestorerProfitComponent
+    RestorerProfitComponent,
+    RestoManagerComponent
   ],
   imports: [
     BrowserModule,

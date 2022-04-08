@@ -25,6 +25,7 @@ export class SignInComponent implements OnInit {
     if (localStorage.getItem("role")) {
       if (localStorage.getItem("role") === "client") this.router.navigate(['client'])
       if (localStorage.getItem("role") === "restaurateur") this.router.navigate(['restaurateur'])
+      if (localStorage.getItem("role") === "admin") this.router.navigate(['admin'])
     }
   }
 
@@ -43,6 +44,9 @@ export class SignInComponent implements OnInit {
         if (res.res.role === "restaurateur") {
           localStorage.setItem("restaurant", res.res.restaurant.nom)
           this.router.navigate(['restaurateur'])
+        }
+        if (res.res.role === "admin") {
+          this.router.navigate(['admin'])
         }
       } else if (res.status === 400) {
         this.message = res.message

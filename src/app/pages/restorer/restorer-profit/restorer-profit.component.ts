@@ -62,8 +62,8 @@ export class RestorerProfitComponent implements OnInit {
   }
 
   onSearch() {
-    this.isSearching = true
     if (this.searchForm.value.gte !== "" && this.searchForm.value.lte != "") {
+      this.isSearching = true
       this.load(this.ds.postData('benefice-resto', {
         "restaurant": localStorage.getItem("restaurant"),
         "gte": new Date(this.searchForm.value.gte).getTime(),
