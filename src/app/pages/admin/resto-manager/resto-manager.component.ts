@@ -28,6 +28,7 @@ export class RestoManagerComponent implements OnInit {
   ngOnInit(): void {
     this.load(this.ds.getData('listeResto')).then(res => {
       this.restoList = res.res
+      console.log(this.restoList)
       this.isLoading = false
     })
   }
@@ -75,7 +76,7 @@ export class RestoManagerComponent implements OnInit {
 
   onUpdateResto() {
     let newRestoData: any = {
-      "ancienNom": this.restoList[this.idResto].nom,
+      "ancienNom": this.restoList[this.idResto].restaurant.nom,
       "newData": {
         "username": this.addRestoForm.value.username,
         "email": this.addRestoForm.value.email,
@@ -110,7 +111,7 @@ export class RestoManagerComponent implements OnInit {
 
   onDelete(id: number) {
     if (confirm("Voulez vous vraiment supprimer ce restaurant définitivement?")) {
-      let nom = this.restoList[id].nom
+      let nom = this.restoList[id].restaurant.nom
       this.restoList_remove(id)
       this.load(this.ds.postData('suppression-restaurant', {
         "restaurant.nom": nom

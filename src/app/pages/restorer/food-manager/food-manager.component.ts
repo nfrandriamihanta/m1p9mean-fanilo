@@ -25,7 +25,8 @@ export class FoodManagerComponent implements OnInit {
   constructor(private ds: DataServiceService) {
     this.load(this.ds.getData('resto/' + localStorage.getItem("restaurant"))).then(res => {
       this.restaurant = res.res
-      this.foodList = res.res.restaurant.plat
+      if (res.res.restaurant.plat)
+        this.foodList = res.res.restaurant.plat
     })
   }
 
