@@ -173,7 +173,7 @@ exports.calculateProfits = async function calculateProfits(data) {
                 {
                     $match: {
                         "restaurant": data.restaurant, "dateCommande": {
-                            $gte: data.gte.getTime(), $lte: data.lte.getTime()
+                            $gte: data.gte, $lte: data.lte
                         }
                     }
                 },
