@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { path } from 'd3';
 import { DefaultLayoutComponent } from './container/default-layout/default-layout.component';
 import { AdminOrderManagerComponent } from './pages/admin/admin-order-manager/admin-order-manager.component';
+import { AdminProfitComponent } from './pages/admin/admin-profit/admin-profit.component';
 import { DeliveryManManagerComponent } from './pages/admin/delivery-man-manager/delivery-man-manager.component';
 import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager.component';
 import { AuthentificationContainerComponent } from './pages/authentification/authentification-container/authentification-container.component';
@@ -85,6 +86,10 @@ const routes: Routes = [
       {
         path: 'gestion-commandes',
         component: AdminOrderManagerComponent
+      },
+      {
+        path: 'benefice',
+        component: AdminProfitComponent
       }
     ]
   }

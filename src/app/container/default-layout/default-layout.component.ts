@@ -31,6 +31,7 @@ export class DefaultLayoutComponent implements OnInit {
       if (localStorage.getItem("role") === "admin") {
         this.path.commande = "gestion-commandes"
         this.path.livreur = "gestion-livreur"
+        this.path.benefice = "benefice"
       }
     }
   }

@@ -22,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager.component';
 import { DeliveryManManagerComponent } from './pages/admin/delivery-man-manager/delivery-man-manager.component';
 import { AdminOrderManagerComponent } from './pages/admin/admin-order-manager/admin-order-manager.component';
+import { AdminProfitComponent } from './pages/admin/admin-profit/admin-profit.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AdminOrderManagerComponent } from './pages/admin/admin-order-manager/ad
     RestorerProfitComponent,
     RestoManagerComponent,
     DeliveryManManagerComponent,
-    AdminOrderManagerComponent
+    AdminOrderManagerComponent,
+    AdminProfitComponent
   ],
   imports: [
     BrowserModule,
