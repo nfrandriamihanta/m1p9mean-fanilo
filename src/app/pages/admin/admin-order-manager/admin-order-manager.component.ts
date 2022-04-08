@@ -48,8 +48,23 @@ export class AdminOrderManagerComponent implements OnInit {
     })
   }
 
+  readyToDeliver_remove(id: number) {
+
+    let newTab = []
+    for (let u = 0; u < id; u++) {
+      newTab[u] = this.readyToDeliver[u]
+    }
+    for (let i = id; i < this.readyToDeliver.length - 1; i++) {
+      newTab[i] = this.readyToDeliver[i + 1]
+    }
+    this.readyToDeliver = newTab
+    console.log(newTab)
+    // console.log(this.panier)
+  }
+
+
   onAssign(id: number) {
-    this.ds.postData('commande/modification', {
+    this.ds.postData('commande/assignation', {
       "client": {
         "username": this.readyToDeliver[id].client.username,
         "email": this.readyToDeliver[id].client.email
@@ -61,5 +76,6 @@ export class AdminOrderManagerComponent implements OnInit {
       if (res.status === 200)
         console.log(res)
     })
+    this.readyToDeliver_remove(id)
   }
 }
