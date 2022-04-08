@@ -12,7 +12,8 @@ export class DefaultLayoutComponent implements OnInit {
   path = {
     "accueil": "",
     "commande": "",
-    "benefice": ""
+    "benefice": "",
+    "livreur": ""
   }
   isLogOut = false
   constructor(private ds: DataServiceService, private router: Router) { }
@@ -28,7 +29,7 @@ export class DefaultLayoutComponent implements OnInit {
         this.path.benefice = "benefice"
       }
       if (localStorage.getItem("role") === "admin") {
-
+        this.path.livreur = "gestion-livreur"
       }
     }
   }

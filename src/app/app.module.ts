@@ -20,6 +20,7 @@ import { RestorerProfitComponent } from './pages/restorer/restorer-profit/restor
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager.component';
+import { DeliveryManManagerComponent } from './pages/admin/delivery-man-manager/delivery-man-manager.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager
     FoodManagerComponent,
     RestorerOrderManagerComponent,
     RestorerProfitComponent,
-    RestoManagerComponent
+    RestoManagerComponent,
+    DeliveryManManagerComponent
   ],
   imports: [
     BrowserModule,

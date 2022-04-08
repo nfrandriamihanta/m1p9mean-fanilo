@@ -8,6 +8,9 @@
                 <a [routerLink]="path.accueil">
                     <li class="list-group-item">Accueil</li>
                 </a>
+                <a [routerLink]="path.livreur" *ngIf="path.livreur">
+                    <li class="list-group-item">Livreur</li>
+                </a>
                 <a [routerLink]="path.commande" *ngIf="path.commande">
                     <li class="list-group-item">Mes commandes</li>
                 </a>
