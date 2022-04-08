@@ -73,3 +73,45 @@ exports.deleteRestaurant = async function deleteRestaurant(condition) {
 //     "restaurant.nom": "restoUpdated"
 // }
 // deleteRestaurant(condition)
+
+
+exports.calculateProfitsPerResto = async function calculateProfitsResto(data) {
+    const client = connect.getClient()
+    let result = null
+    console.log(new Date())
+    try {
+        await client.connect()
+        if (data.gte && data.lte) {
+            result = await client.db(connect.dbName).collection('Order').aggregate([
+                {
+                    $match: {
+                        "dateCommande": {
+                            $gte: data.gte, $lte: data.lte
+                        }
+                    }
+                },
+                {
+                    $group: { "_id": "$restaurant", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+                }
+            ]).toArray()
+        } else {
+            result = await client.db(connect.dbName).collection('Order').aggregate([
+                {
+                    $group: { "_id": "$restaurant", "beneficeTotalResto": { $sum: "$beneficeTotal" }, "beneficeTotalEkaly": { $sum: "$beneficeEkaly" } }
+                }
+            ]).toArray()
+        }
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+    return result
+}
+
+// data = {
+//     "gte": 1649289600000,
+//     "lte": 1649635200000
+// }
+// calculateProfitsResto(data)

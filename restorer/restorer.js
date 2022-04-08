@@ -206,7 +206,6 @@ exports.calculateProfits = async function calculateProfits(data) {
                 }
             ]).toArray()
         } else {
-            console.log("tsy misy filtre")
             result = await client.db(connect.dbName).collection('Order').aggregate([
                 {
                     $match: {
