@@ -10,25 +10,23 @@ import { DataServiceService } from 'src/app/service/data-service.service';
 })
 export class DeliveryManManagerComponent implements OnInit {
 
-  restoList: any[] = []
+  deliveryManList: any[] = []
   isLoading = true
-  idResto: number = 1
-  addRestoForm = new FormGroup({
+  idDeliveryMan: number = 1
+  addDeliveryManForm = new FormGroup({
     username: new FormControl('', Validators.required),
     email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    nom: new FormControl('', Validators.required),
-    lieu: new FormControl('', Validators.required),
-    specialite: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required)
+    password: new FormControl('', Validators.required)
   });
 
   constructor(private ds: DataServiceService) { }
 
   ngOnInit(): void {
-    this.load(this.ds.getData('listeResto')).then(res => {
-      this.restoList = res.res
-      console.log(this.restoList)
+    this.load(this.ds.postData('livreur', {
+      "role": "admin"
+    })).then(res => {
+      this.deliveryManList = res.res
+      console.log(this.deliveryManList)
       this.isLoading = false
     })
   }
@@ -41,80 +39,64 @@ export class DeliveryManManagerComponent implements OnInit {
     })
   }
 
-  onAddResto() {
+  onAddDeliveryMan() {
     let newResto: any = {
-      "username": this.addRestoForm.value.username,
-      "email": this.addRestoForm.value.email,
-      "password": this.addRestoForm.value.password,
-      "role": "restaurateur",
-      "restaurant": {
-        "nom": this.addRestoForm.value.nom,
-        "lieu": this.addRestoForm.value.lieu,
-        "description": this.addRestoForm.value.description,
-        "specialite": this.addRestoForm.value.specialite
-      }
+      "username": this.addDeliveryManForm.value.username,
+      "email": this.addDeliveryManForm.value.email,
+      "password": this.addDeliveryManForm.value.password,
+      "role": "admin"
     }
-    this.restoList.push(newResto)
-    this.load(this.ds.postData('ajout-restaurant', newResto)).then(res => {
+    this.deliveryManList.push(newResto)
+    this.load(this.ds.postData('ajout-livreur', newResto)).then(res => {
     })
 
-    // console.log(this.restoList)
+    // console.log(this.deliveryManList)
   }
 
-  passIdResto(id: number) {
-    this.idResto = id
-    this.addRestoForm = new FormGroup({
-      username: new FormControl(this.restoList[id].username, Validators.required),
-      email: new FormControl(this.restoList[id].email, Validators.required),
-      password: new FormControl(this.restoList[id].password, Validators.required),
-      nom: new FormControl(this.restoList[id].restaurant.nom, Validators.required),
-      lieu: new FormControl(this.restoList[id].restaurant.lieu, Validators.required),
-      specialite: new FormControl(this.restoList[id].restaurant.specialite, Validators.required),
-      description: new FormControl(this.restoList[id].restaurant.description, Validators.required)
+  passIdDeliveryMan(id: number) {
+    this.idDeliveryMan = id
+    this.addDeliveryManForm = new FormGroup({
+      username: new FormControl(this.deliveryManList[id].username, Validators.required),
+      email: new FormControl(this.deliveryManList[id].email, Validators.required),
+      password: new FormControl(this.deliveryManList[id].password, Validators.required),
     });
   }
 
-  onUpdateResto() {
-    let newRestoData: any = {
-      "ancienNom": this.restoList[this.idResto].restaurant.nom,
+  onUpdateDeliveryMan() {
+    let newDeliveryManData: any = {
+      "ancienNom": this.deliveryManList[this.idDeliveryMan].username,
       "newData": {
-        "username": this.addRestoForm.value.username,
-        "email": this.addRestoForm.value.email,
-        "password": this.addRestoForm.value.password,
-        "role": "restaurateur",
-        "restaurant": {
-          "nom": this.addRestoForm.value.nom,
-          "lieu": this.addRestoForm.value.lieu,
-          "description": this.addRestoForm.value.description,
-          "specialite": this.addRestoForm.value.specialite
-        }
+        "username": this.addDeliveryManForm.value.username,
+        "email": this.addDeliveryManForm.value.email,
+        "password": this.addDeliveryManForm.value.password,
+        "role": "admin",
       }
     }
-    this.restoList[this.idResto] = newRestoData.newData
-    this.load(this.ds.postData('modification-restaurant', newRestoData)).then(res => {
+    this.deliveryManList[this.idDeliveryMan] = newDeliveryManData.newData
+    this.load(this.ds.postData('modification-livreur', newDeliveryManData)).then(res => {
     })
   }
 
-  restoList_remove(id: number) {
+  deliveryManList_remove(id: number) {
 
     let newRestoList = []
     for (let u = 0; u < id; u++) {
-      newRestoList[u] = this.restoList[u]
+      newRestoList[u] = this.deliveryManList[u]
     }
-    for (let i = id; i < this.restoList.length - 1; i++) {
-      newRestoList[i] = this.restoList[i + 1]
+    for (let i = id; i < this.deliveryManList.length - 1; i++) {
+      newRestoList[i] = this.deliveryManList[i + 1]
     }
-    this.restoList = newRestoList
+    this.deliveryManList = newRestoList
     console.log(newRestoList)
     // console.log(this.panier)
   }
 
   onDelete(id: number) {
     if (confirm("Voulez vous vraiment supprimer ce restaurant définitivement?")) {
-      let nom = this.restoList[id].restaurant.nom
-      this.restoList_remove(id)
-      this.load(this.ds.postData('suppression-restaurant', {
-        "restaurant.nom": nom
+      let nom = this.deliveryManList[id].username
+      this.deliveryManList_remove(id)
+      this.load(this.ds.postData('suppression-livreur', {
+        "username": nom
       })).then(res => {
       })
     }
