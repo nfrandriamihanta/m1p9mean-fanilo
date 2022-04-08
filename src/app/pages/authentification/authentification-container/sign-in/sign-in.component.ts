@@ -48,6 +48,9 @@ export class SignInComponent implements OnInit {
         if (res.res.role === "admin") {
           this.router.navigate(['admin'])
         }
+        if (res.res.role === "livreur") {
+          this.router.navigate(['livreur'])
+        }
       } else if (res.status === 400) {
         this.message = res.message
         this.isClicked = false

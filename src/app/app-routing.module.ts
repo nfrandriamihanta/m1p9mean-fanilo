@@ -12,6 +12,7 @@ import { SignUpComponent } from './pages/authentification/authentification-conta
 import { CustomerFoodListComponent } from './pages/customer/customer-food-list/customer-food-list.component';
 import { CustomerOrderListComponent } from './pages/customer/customer-order-list/customer-order-list.component';
 import { CustomerRestoListComponent } from './pages/customer/customer-resto-list/customer-resto-list.component';
+import { DeliveryOrderManagerComponent } from './pages/delivery/delivery-order-manager/delivery-order-manager.component';
 import { FoodManagerComponent } from './pages/restorer/food-manager/food-manager.component';
 import { RestorerOrderManagerComponent } from './pages/restorer/restorer-order-manager/restorer-order-manager.component';
 import { RestorerProfitComponent } from './pages/restorer/restorer-profit/restorer-profit.component';
@@ -90,6 +91,16 @@ const routes: Routes = [
       {
         path: 'benefice',
         component: AdminProfitComponent
+      }
+    ]
+  },
+  {
+    path: 'livreur',
+    component: DefaultLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: DeliveryOrderManagerComponent
       }
     ]
   }

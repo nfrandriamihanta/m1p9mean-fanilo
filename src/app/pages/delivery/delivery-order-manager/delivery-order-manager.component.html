@@ -1,0 +1,18 @@
+<div class="container" *ngIf="!isLoading && assignedOrderList.length !== 0">
+    <div class=" card" *ngFor="let item of assignedOrderList; let index = index">
+        <div class="card-body">
+            <h1><i id="check" class="fa fa-solid fa-check" style="float: right;color: blue;"
+                    (click)="onFinish(index)"></i></h1>
+            <h5 class="card-title">{{item.restaurant}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.client.username}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.dateCommande | date: 'dd-MM-YYYY hh:mm a'}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted">{{item.lieuLivraison}}</h6>
+        </div>
+    </div>
+</div>
+<div *ngIf="!isLoading && assignedOrderList.length === 0" style="margin-left: 30%">
+    <img src="../../../../assets/96987-magnifying-glass-404.gif" alt="">
+</div>
+<div *ngIf="isLoading" style="margin-left: 30%">
+    <img src="../../../../assets/92163-food-courier.gif" alt="">
+</div>

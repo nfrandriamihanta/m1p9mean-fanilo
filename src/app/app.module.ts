@@ -23,6 +23,7 @@ import { RestoManagerComponent } from './pages/admin/resto-manager/resto-manager
 import { DeliveryManManagerComponent } from './pages/admin/delivery-man-manager/delivery-man-manager.component';
 import { AdminOrderManagerComponent } from './pages/admin/admin-order-manager/admin-order-manager.component';
 import { AdminProfitComponent } from './pages/admin/admin-profit/admin-profit.component';
+import { DeliveryOrderManagerComponent } from './pages/delivery/delivery-order-manager/delivery-order-manager.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AdminProfitComponent } from './pages/admin/admin-profit/admin-profit.co
     RestoManagerComponent,
     DeliveryManManagerComponent,
     AdminOrderManagerComponent,
-    AdminProfitComponent
+    AdminProfitComponent,
+    DeliveryOrderManagerComponent
   ],
   imports: [
     BrowserModule,
