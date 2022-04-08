@@ -13,3 +13,7 @@
     text-align: center;
     font-size: medium;
 }
+
+#deconnexion:hover {
+    cursor: pointer
+}

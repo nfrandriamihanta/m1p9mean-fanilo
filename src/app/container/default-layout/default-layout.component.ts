@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataServiceService } from 'src/app/service/data-service.service';
 
 @Component({
   selector: 'app-default-layout',
@@ -12,7 +14,8 @@ export class DefaultLayoutComponent implements OnInit {
     "commande": "",
     "benefice": ""
   }
-  constructor() { }
+  isLogOut = false
+  constructor(private ds: DataServiceService, private router: Router) { }
 
   ngOnInit(): void {
     if (localStorage.getItem("role")) {
@@ -28,6 +31,18 @@ export class DefaultLayoutComponent implements OnInit {
 
       }
     }
+  }
+
+  onLogOut() {
+    this.isLogOut = true
+    this.ds.postData('deconnexion', {
+      "username": localStorage.getItem("username"),
+      "email": localStorage.getItem("email")
+    }).subscribe(res => {
+      localStorage.clear()
+      this.router.navigate([''])
+    })
+
   }
 
 }

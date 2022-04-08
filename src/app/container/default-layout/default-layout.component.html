@@ -14,7 +14,12 @@
                 <a [routerLink]="path.benefice" *ngIf="path.benefice">
                     <li class="list-group-item">Bénéfice</li>
                 </a>
-                <li class="list-group-item">Deconnexion</li>
+                <li class="list-group-item" (click)="onLogOut()" id="deconnexion">Deconnexion
+
+                </li>
+                <li class="list-group-item" *ngIf="isLogOut">
+                    <img src="../../../assets/98112-circle-loading-progress-indicator.gif" alt="" width="50">
+                </li>
             </ul>
         </div>
     </nav>
