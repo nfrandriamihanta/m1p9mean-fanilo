@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div id="searchBar">
         <div id="content">
-            <h2 style="color: white; ">Retrouvez le meilleur des restaurants de Madagascar</h2>
+            <h2 style="color: white; ">Recherchez vos bénéfice entre deux dates</h2>
             <form class="form" [formGroup]="searchForm" style="margin-top: 3%; margin-left: 31%;"
                 (ngSubmit)="onSearch()">
                 <ul class="list-group list-group-horizontal">
@@ -19,7 +19,7 @@
             </form>
         </div>
     </div>
-    <div class="row" style="margin-top: 5%;">
+    <div class="row" style="margin-top: 5%;" *ngIf="!isSearching">
         <div class="col-md-6">
             <ngx-charts-bar-vertical [view]="[1000,400]" [results]="chartData" [xAxisLabel]="'Date'"
                 [legendTitle]="'Bénéfice'" [yAxisLabel]="'Bénéfice'" [legend]="true" [showXAxisLabel]="true"
@@ -29,6 +29,8 @@
         <div class="col-md-6" style="padding-left: 10%; margin-top: 10%;">
             <h2>Bénéfice totale = {{ profitsTotal }}Ar</h2>
         </div>
-
+    </div>
+    <div *ngIf="isSearching" style="margin-left: 30%">
+        <img src="../../../../assets/99946-searching.gif" alt="">
     </div>
 </div>

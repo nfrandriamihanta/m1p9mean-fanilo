@@ -23,6 +23,8 @@ export class RestorerProfitComponent implements OnInit {
     lte: new FormControl('', Validators.required),
   });
 
+  isSearching = false
+
   constructor(private ds: DataServiceService, private dp: DatePipe) { }
 
   ngOnInit(): void {
@@ -60,6 +62,7 @@ export class RestorerProfitComponent implements OnInit {
   }
 
   onSearch() {
+    this.isSearching = true
     if (this.searchForm.value.gte !== "" && this.searchForm.value.lte != "") {
       this.load(this.ds.postData('benefice-resto', {
         "restaurant": localStorage.getItem("restaurant"),
@@ -70,6 +73,7 @@ export class RestorerProfitComponent implements OnInit {
         console.log(this.profitsPerDay)
         this.fillChart()
         this.calculateProfits()
+        this.isSearching = false
         console.log(this.profitsPerDay)
       })
     } else {
