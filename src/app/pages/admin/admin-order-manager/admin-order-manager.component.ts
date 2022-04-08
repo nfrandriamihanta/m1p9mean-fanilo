@@ -70,6 +70,7 @@ export class AdminOrderManagerComponent implements OnInit {
         "email": this.readyToDeliver[id].client.email
       },
       "dateCommande": this.readyToDeliver[id].dateCommande,
+      "restaurant": this.readyToDeliver[id].restaurant,
       "etat": "assigné",
       "livreur": this.assignForm.value.deliveryMan
     }).subscribe(res => {

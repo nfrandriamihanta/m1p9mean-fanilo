@@ -53,6 +53,7 @@ export class DeliveryOrderManagerComponent implements OnInit {
         "email": this.assignedOrderList[id].client.email
       },
       "dateCommande": this.assignedOrderList[id].dateCommande,
+      "restaurant": this.assignedOrderList[id].restaurant,
       "etat": "livré",
     }).subscribe(res => {
       if (res.status === 200)

@@ -75,6 +75,7 @@ export class RestorerOrderManagerComponent implements OnInit {
         "email": this.waitingOrder[event.previousIndex].client.email
       },
       "dateCommande": this.waitingOrder[event.previousIndex].dateCommande,
+      "restaurant": this.waitingOrder[event.previousIndex].restaurant,
       "etat": "à livrer"
     }).subscribe(res => {
       if (res.status === 200)
