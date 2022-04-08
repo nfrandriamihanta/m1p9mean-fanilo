@@ -7,6 +7,7 @@ const app = express()
 const user = require("./user/user")
 const restorer = require("./restorer/restorer")
 const admin = require("./restorer/admin")
+const deliver = require("./restorer/deliver")
 const cors = require('cors');
 
 
@@ -284,6 +285,61 @@ router.post("/suppression-restaurant", async function (req, res) {
     let result = {}
     try {
         result = await admin.deleteRestaurant(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+
+router.post("/ajout-livreur", async function (req, res) {
+    let result = {}
+    try {
+        result = await deliver.addDeliveryMan(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/modification-livreur", async function (req, res) {
+    let result = {}
+    try {
+        result = await deliver.updateDeliveryMan(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/suppression-livreur", async function (req, res) {
+    let result = {}
+    try {
+        result = await deliver.deleteDeliveryMan(req.body)
         console.log(result)
         res.status(200).json({
             "status": 200,
