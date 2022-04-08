@@ -6,6 +6,7 @@ const app = express()
 
 const user = require("./user/user")
 const restorer = require("./restorer/restorer")
+const admin = require("./restorer/admin")
 const cors = require('cors');
 
 
@@ -229,6 +230,60 @@ router.post("/benefice-resto", async function (req, res) {
     let result = {}
     try {
         result = await restorer.calculateProfits(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/ajout-restaurant", async function (req, res) {
+    let result = {}
+    try {
+        result = await admin.addRestaurant(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/modification-restaurant", async function (req, res) {
+    let result = {}
+    try {
+        result = await admin.updateRestaurant(req.body)
+        console.log(result)
+        res.status(200).json({
+            "status": 200,
+            "res": result
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(400).json({
+            "message": e,
+            "status": 400
+        })
+    }
+})
+
+router.post("/suppression-restaurant", async function (req, res) {
+    let result = {}
+    try {
+        result = await admin.deleteRestaurant(req.body)
         console.log(result)
         res.status(200).json({
             "status": 200,

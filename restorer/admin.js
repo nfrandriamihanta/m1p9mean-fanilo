@@ -1,6 +1,6 @@
 const connect = require('../util/connect')
 
-async function updateRestaurant(newRestaurantData) {
+exports.updateRestaurant = async function updateRestaurant(newRestaurantData) {
     const client = connect.getClient()
     let result = null
     try {
@@ -8,6 +8,7 @@ async function updateRestaurant(newRestaurantData) {
         result = await client.db(connect.dbName).collection('UserManager').updateOne({
             "restaurant.nom": newRestaurantData.ancienNom
         }, { $set: newRestaurantData.newData })
+        console.log(result)
     } catch (e) {
         console.error(e)
     } finally {
@@ -16,13 +17,22 @@ async function updateRestaurant(newRestaurantData) {
     return result
 }
 
+// newRestaurantData = {
+//     "ancienNom": "testResto",
+//     "newData": {
+//         "restaurant.nom": "restoUpdated",
+//         "restaurant.lieu": "lieuUpdated"
+//     }
+// }
+// updateRestaurant(newRestaurantData)
 
-async function addRestaurant(newRestaurant) {
+exports.addRestaurant = async function addRestaurant(newRestaurant) {
     const client = connect.getClient()
     let result = null
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('UserManager').insertOne(newRestaurant)
+        console.log(result)
     } catch (e) {
         console.error(e)
     } finally {
@@ -31,12 +41,26 @@ async function addRestaurant(newRestaurant) {
     return result
 }
 
-async function deleteRestaurant(condition) {
+// newResto = {
+//     "username": "testResto",
+//     "email": "testResto@gmail.com",
+//     "password": "12345",
+//     "restaurant": {
+//         "nom": "testResto",
+//         "lieu": "testLieu",
+//         "description": "testDescription",
+//         "specialite": "testSpecialite",
+//     }
+// }
+// addRestaurant(newResto)
+
+exports.deleteRestaurant = async function deleteRestaurant(condition) {
     const client = connect.getClient()
     let result = null
     try {
         await client.connect()
         result = await client.db(connect.dbName).collection('UserManager').deleteOne(condition)
+        console.log(result)
     } catch (e) {
         console.error(e)
     } finally {
@@ -44,3 +68,8 @@ async function deleteRestaurant(condition) {
     }
     return result
 }
+
+// condition = {
+//     "restaurant.nom": "restoUpdated"
+// }
+// deleteRestaurant(condition)
