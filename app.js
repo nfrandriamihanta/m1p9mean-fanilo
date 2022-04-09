@@ -84,346 +84,384 @@ router.post("/inscription", async function (req, res) {
 })
 
 router.get("/listeResto", async function (req, res) {
-    let result = {}
-    try {
-        result = await user.findAllResto()
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await user.findAllResto()
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/recherche", async function (req, res) {
-    let result = {}
-    try {
-        result = await user.search(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await user.search(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.get("/resto/:resto", async function (req, res) {
-    let result = {}
-    try {
-        result = await user.findRestoByName(req.params.resto)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await user.findRestoByName(req.params.resto)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/commander", async function (req, res) {
-    let result = {}
-    try {
-        result = await user.orderFood(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await user.orderFood(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/commande", async function (req, res) {
-    let result = {}
-    try {
-        result = await user.findOrder(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await user.findOrder(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/plat/modification", async function (req, res) {
-    let result = {}
-    try {
-        result = await restorer.updateFood(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await restorer.updateFood(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/commande/modification", async function (req, res) {
-    let result = {}
-    try {
-        result = await restorer.updateOrder(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await restorer.updateOrder(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/commande/assignation", async function (req, res) {
-    let result = {}
-    try {
-        result = await restorer.assignOrder(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await restorer.assignOrder(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/gestion-commandes", async function (req, res) {
-    let result = {}
-    try {
-        result = await restorer.findOrder(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await restorer.findOrder(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/benefice-resto", async function (req, res) {
-    let result = {}
-    try {
-        result = await restorer.calculateProfits(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await restorer.calculateProfits(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/ajout-restaurant", async function (req, res) {
-    let result = {}
-    try {
-        result = await admin.addRestaurant(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await admin.addRestaurant(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/modification-restaurant", async function (req, res) {
-    let result = {}
-    try {
-        result = await admin.updateRestaurant(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await admin.updateRestaurant(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/suppression-restaurant", async function (req, res) {
-    let result = {}
-    try {
-        result = await admin.deleteRestaurant(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await admin.deleteRestaurant(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 
 router.post("/ajout-livreur", async function (req, res) {
-    let result = {}
-    try {
-        result = await deliver.addDeliveryMan(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await deliver.addDeliveryMan(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/modification-livreur", async function (req, res) {
-    let result = {}
-    try {
-        result = await deliver.updateDeliveryMan(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await deliver.updateDeliveryMan(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/suppression-livreur", async function (req, res) {
-    let result = {}
-    try {
-        result = await deliver.deleteDeliveryMan(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await deliver.deleteDeliveryMan(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/livreur", async function (req, res) {
-    let result = {}
-    try {
-        result = await deliver.findDeliveryMan(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await deliver.findDeliveryMan(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 router.post("/deconnexion", async function (req, res) {
-    let result = {}
-    try {
-        result = await user.logOut(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await user.logOut(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 
 
 router.post("/benefice-ekaly", async function (req, res) {
-    let result = {}
-    try {
-        result = await admin.calculateProfitsPerResto(req.body)
-        console.log(result)
-        res.status(200).json({
-            "status": 200,
-            "res": result
-        })
-    } catch (e) {
-        console.error(e)
-        res.status(400).json({
-            "message": e,
-            "status": 400
-        })
+    if (user.verifyAuthorization(req.headers['authorization'])) {
+        let result = {}
+        try {
+            result = await admin.calculateProfitsPerResto(req.body)
+            console.log(result)
+            res.status(200).json({
+                "status": 200,
+                "res": result
+            })
+        } catch (e) {
+            console.error(e)
+            res.status(400).json({
+                "message": e,
+                "status": 400
+            })
+        }
     }
 })
 

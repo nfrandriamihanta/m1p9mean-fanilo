@@ -174,7 +174,7 @@ exports.logOut = async function logOut(user) {
     return result
 }
 
-async function verifyAuthorization(authorization) {
+exports.verifyAuthorization = async function verifyAuthorization(authorization) {
     authorization = authorization.replace('Bearer ', '')
     const client = connect.getClient()
     let result = {}
