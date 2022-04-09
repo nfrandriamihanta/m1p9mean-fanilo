@@ -19,6 +19,9 @@ export class DefaultLayoutComponent implements OnInit {
   constructor(private ds: DataServiceService, private router: Router) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem("token")) {
+      this.router.navigate([''])
+    }
     if (localStorage.getItem("role")) {
       if (localStorage.getItem("role") === "client") {
         this.path.commande = "mes-commandes"
