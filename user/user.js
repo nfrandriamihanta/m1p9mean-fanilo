@@ -38,14 +38,6 @@ exports.signIn = async function signIn(user) {
     return result
 }
 
-
-signIn({
-    "username": "testClient",
-    "password": "12345"
-})
-
-
-
 exports.signUp = async function signUp(user) {
     const client = connect.getClient()
     let result = null
