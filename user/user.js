@@ -14,7 +14,7 @@ async function test() {
     }
 }
 
-async function signIn(user) {
+exports.signIn = async function signIn(user) {
     const client = connect.getClient()
     date = null
     let result = {}
