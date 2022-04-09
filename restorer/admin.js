@@ -1,10 +1,14 @@
 const connect = require('../util/connect')
+const token = require('../util/token')
 
 exports.updateRestaurant = async function updateRestaurant(newRestaurantData) {
     const client = connect.getClient()
     let result = null
     try {
         await client.connect()
+        if (newRestaurantData.newData.password) {
+            newRestaurantData.newData.password = token.hashPwd(newRestaurantData.newData.password)
+        }
         result = await client.db(connect.dbName).collection('UserManager').updateOne({
             "restaurant.nom": newRestaurantData.ancienNom
         }, { $set: newRestaurantData.newData })
@@ -18,10 +22,11 @@ exports.updateRestaurant = async function updateRestaurant(newRestaurantData) {
 }
 
 // newRestaurantData = {
-//     "ancienNom": "testResto",
+//     "ancienNom": "restoUpdated",
 //     "newData": {
-//         "restaurant.nom": "restoUpdated",
-//         "restaurant.lieu": "lieuUpdated"
+//         "restaurant.nom": "testResto",
+//         "restaurant.lieu": "testLieu",
+//         "password": "12345"
 //     }
 // }
 // updateRestaurant(newRestaurantData)
@@ -31,6 +36,7 @@ exports.addRestaurant = async function addRestaurant(newRestaurant) {
     let result = null
     try {
         await client.connect()
+        newRestaurant.password = token.hashPwd(newRestaurant.password)
         result = await client.db(connect.dbName).collection('UserManager').insertOne(newRestaurant)
         console.log(result)
     } catch (e) {

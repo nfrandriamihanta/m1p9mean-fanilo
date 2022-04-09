@@ -14,12 +14,13 @@ async function test() {
     }
 }
 
-exports.signIn = async function signIn(user) {
+async function signIn(user) {
     const client = connect.getClient()
     date = null
     let result = {}
     try {
         await client.connect()
+        user.password = token.hashPwd(user.password)
         result = await client.db(connect.dbName).collection('UserManager').findOne(user)
         if (result) {
             date = Date()
@@ -38,11 +39,19 @@ exports.signIn = async function signIn(user) {
 }
 
 
+signIn({
+    "username": "testClient",
+    "password": "12345"
+})
+
+
+
 exports.signUp = async function signUp(user) {
     const client = connect.getClient()
     let result = null
     try {
         await client.connect()
+        user.password = token.hashPwd(user.password)
         result = await client.db(connect.dbName).collection('UserManager').insertOne(user)
         mailer.sendMail(user.email, {
             "subject": "Tu viens de prendre la meilleure décision de ta vie !!",
@@ -56,6 +65,7 @@ exports.signUp = async function signUp(user) {
     }
     return result
 }
+
 
 exports.findAllResto = async function findAllResto() {
     const client = connect.getClient()
@@ -162,4 +172,25 @@ exports.logOut = async function logOut(user) {
         await client.close()
     }
     return result
+}
+
+async function verifyAuthorization(authorization) {
+    authorization = authorization.replace('Bearer ', '')
+    const client = connect.getClient()
+    let result = {}
+    try {
+        await client.connect()
+        result = await client.db(connect.dbName).collection('Order').findOne(
+            {
+                "token": authorization
+            }
+        )
+        if (result.length !== 0) return true
+        console.log(result)
+    } catch (e) {
+        console.error(e)
+    } finally {
+        client.close()
+    }
+    return false
 }

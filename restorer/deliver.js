@@ -1,10 +1,14 @@
 const connect = require('../util/connect')
+const token = require('../util/token')
 
 exports.updateDeliveryMan = async function updateDeliveryMan(newDeliveryManData) {
     const client = connect.getClient()
     let result = null
     try {
         await client.connect()
+        if (newDeliveryManData.newData.password) {
+            newDeliveryManData.newData.password = token.hashPwd(newDeliveryManData.newData.password)
+        }
         result = await client.db(connect.dbName).collection('UserManager').updateOne({
             "username": newDeliveryManData.ancienNom
         }, { $set: newDeliveryManData.newData })
@@ -23,6 +27,7 @@ exports.addDeliveryMan = async function addDeliveryMan(newDeliveryMan) {
     let result = null
     try {
         await client.connect()
+        newDeliveryMan.password = token.hashPwd(newDeliveryMan.password)
         result = await client.db(connect.dbName).collection('UserManager').insertOne(newDeliveryMan)
         console.log(result)
     } catch (e) {
