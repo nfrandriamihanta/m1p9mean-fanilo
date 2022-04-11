@@ -20,17 +20,17 @@
         </div>
     </div>
     <div class="row" style="margin-top: 5%;" *ngIf="!isSearching">
-        <div class="col-md-6">
+        <div class="col-md-7">
             <ngx-charts-bar-vertical [view]="[1000,400]" [results]="chartData" [xAxisLabel]="'Date'"
                 [legendTitle]="'Bénéfice'" [yAxisLabel]="'Bénéfice'" [legend]="true" [showXAxisLabel]="true"
                 [showYAxisLabel]="true" [xAxis]="true" [yAxis]="true" [gradient]="false">
             </ngx-charts-bar-vertical>
         </div>
-        <div class="col-md-6" style="padding-left: 10%; margin-top: 10%;">
+        <div class="col-md-5" style="padding-left: 10%; margin-top: 10%;">
             <h2>Bénéfice totale = {{ profitsTotal }}Ar</h2>
         </div>
     </div>
-    <div *ngIf="isSearching" style="margin-left: 30%">
+    <div *ngIf="isSearching" class="loading">
         <img src="../../../../assets/99946-searching.gif" alt="">
     </div>
 </div>

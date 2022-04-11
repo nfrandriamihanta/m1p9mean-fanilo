@@ -32,6 +32,9 @@ export class AdminOrderManagerComponent implements OnInit {
       })).then(res => {
         this.deliveryManList = res.res
         console.log(this.deliveryManList)
+        this.assignForm = new FormGroup({
+          deliveryMan: new FormControl(this.deliveryManList[0].username, Validators.required)
+        })
       }).then(res => {
         this.isLoading = false
       })

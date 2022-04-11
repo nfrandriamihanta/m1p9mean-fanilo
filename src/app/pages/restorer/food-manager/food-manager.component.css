@@ -2,6 +2,38 @@
     margin-bottom: 20px;
 }
 
+.card {
+    margin-bottom: 2%;
+}
+
 label {
     font-size: larger;
+}
+
+.loading {
+    margin-left: 30%
+}
+
+@media screen and (max-width: 1300px) {
+    .loading {
+        margin-left: 17%
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .loading {
+        margin-left: 17%
+    }
+
+    img {
+        width: 70%;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .col-right {
+        margin-top: 5%;
+    }
 }

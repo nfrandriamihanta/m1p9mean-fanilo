@@ -1,3 +1,25 @@
 #check:hover {
     cursor: pointer;
 }
+
+.loading {
+    margin-left: 30%
+}
+
+@media screen and (max-width: 1300px) {
+    .loading {
+        margin-left: 17%
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .loading {
+        margin-left: 17%
+    }
+
+    img {
+        width: 70%;
+    }
+
+}

@@ -38,7 +38,7 @@
             <div class="col-md-6">
                 <div
                     style="border: 1rem solid;; border-color: #02156e; margin-top: 200px; padding-top: 20px; margin-bottom: 30px;">
-                    <div *ngIf="panier.length === 0" style="margin-left: 35%;">
+                    <div *ngIf="panier.length === 0" class="empty">
                         <img src="../../../../assets/80582-empty-cart.gif" width="300" alt="">
                     </div>
                     <div *ngIf="panier.length !== 0">
@@ -75,6 +75,6 @@
 
     </div>
 </div>
-<div *ngIf="!restaurant" style="margin-left: 30%">
+<div *ngIf="!restaurant" class="loading">
     <img src="../../../../assets/92163-food-courier.gif" alt="">
 </div>

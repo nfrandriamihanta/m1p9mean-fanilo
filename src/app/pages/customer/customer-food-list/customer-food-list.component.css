@@ -28,3 +28,43 @@
 .card:hover {
     background-color: #cfcbc2;
 }
+
+.empty {
+    margin-left: 35%;
+}
+
+.loading {
+    margin-left: 30%
+}
+
+@media screen and (max-width: 1600px) {
+    .empty {
+        margin-left: 30%;
+    }
+
+}
+
+@media screen and (max-width: 1200px) {
+    .empty {
+        margin-left: 22%;
+    }
+
+}
+
+@media screen and (max-width: 1300px) {
+    .loading {
+        margin-left: 17%
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .loading {
+        margin-left: 17%
+    }
+
+    img {
+        width: 70%;
+    }
+
+}

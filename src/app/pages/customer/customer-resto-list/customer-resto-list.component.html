@@ -2,14 +2,11 @@
     <div id="searchBar">
         <div id="content">
             <h2 style="color: white; ">Retrouvez le meilleur des restaurants de Madagascar</h2>
-            <form class="form" style="margin-top: 3%; margin-left: 31%;" [formGroup]="searchForm"
-                (ngSubmit)="onSearch()">
+            <form class="form" [formGroup]="searchForm" (ngSubmit)="onSearch()">
                 <ul class="list-group list-group-horizontal">
                     <li class="list-group-item"><input type="text" class="form-control"
-                            style="width: 230%; height: 45px; font-family:Arial, FontAwesome"
                             placeholder="&#xF002; Restaurant" formControlName="restaurant"></li>
-                    <li class="list-group-item" style="margin-left: 20%;"><button class="btn btn-primary"
-                            style="height: 45px; width: 150%;">
+                    <li class="list-group-item" id="item2"><button class="btn btn-primary">
                             Rechercher
                         </button>
                 </ul>
@@ -37,14 +34,14 @@
             </div>
         </div>
     </div>
-    <div *ngIf="searchSignal && searchResult.length === 0 && !notFound" style="margin-left: 30%">
+    <div class="loading" *ngIf="searchSignal && searchResult.length === 0 && !notFound">
         <img src="../../../../assets/99946-searching.gif" alt="">
     </div>
-    <div *ngIf="notFound" style="margin-left: 30%">
+    <div class="loading" *ngIf="notFound">
         <img src="../../../../assets/96987-magnifying-glass-404.gif" alt="">
     </div>
 
 </div>
-<div *ngIf="restoList.length === 0" style="margin-left: 30%">
+<div class="loading" *ngIf="restoList.length === 0">
     <img src="../../../../assets/92163-food-courier.gif" alt="">
 </div>

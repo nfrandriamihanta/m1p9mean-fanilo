@@ -25,6 +25,77 @@
     border-color: #02156e;
 }
 
+.form {
+    margin-top: 3%;
+    margin-left: 31%;
+}
+
+input {
+    width: 230%;
+    height: 45px;
+    font-family: Arial, FontAwesome
+}
+
+#item2 {
+    margin-left: 20%;
+}
+
+button {
+    height: 45px;
+    width: 150%;
+}
+
 .card:hover {
     background-color: #cfcbc2;
+}
+
+.loading {
+    margin-left: 30%
+}
+
+@media screen and (max-width: 1300px) {
+    .form {
+        margin-left: 20%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    input {
+        width: 150%;
+    }
+
+    #item2 {
+        margin-left: 0%;
+    }
+
+    button {
+        width: 90%;
+        font-size: 80%;
+    }
+
+}
+
+@media screen and (max-width: 1300px) {
+    .loading {
+        margin-left: 17%
+    }
+
+}
+
+@media screen and (max-width: 900px) {
+    .loading {
+        margin-left: 17%
+    }
+
+    img {
+        width: 70%;
+    }
+
+}
+
+@media screen and (max-width: 675px) {
+    h2 {
+        font-size: medium;
+    }
+
 }

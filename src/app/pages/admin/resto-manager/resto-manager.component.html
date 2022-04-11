@@ -54,7 +54,7 @@
             </div>
         </div>
         <div style="margin-bottom: 30px; padding-left: 10px; padding-right: 10px;">
-
+            <h2 style="margin-bottom: 2%; text-align: center; color: #02156e;">Nouveau resto</h2>
             <form [formGroup]="addRestoForm" (ngSubmit)="onAddResto()">
                 <div class="form-group">
                     <label for="username"> username du responsable </label>
@@ -88,6 +88,7 @@
             </form>
         </div>
 
+        <h2 style="margin-top: 5% ;margin-bottom: 2%; text-align: center; color: #02156e;">Liste resto</h2>
         <div class=" card" *ngFor="let resto of restoList; let index = index">
             <div class="card-body">
                 <ul class="list-group list-group-horizontal" style="float: right; top: 0;">
@@ -106,6 +107,6 @@
         </div>
     </div>
 </div>
-<div *ngIf="isLoading" style="margin-left: 30%">
+<div *ngIf="isLoading" class="loading">
     <img src="../../../../assets/92163-food-courier.gif" alt="">
 </div>
